@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableBehaviour : MonoBehaviour
 {
+    public ID EntityID => m_EntityID;
     public string m_InteractableIDName;
 
     private ID m_EntityID;

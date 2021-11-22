@@ -14,6 +14,21 @@ public class InteractionsBehaviour : MonoBehaviour
             m_InteractablesInRange[0].Interact();
     }
 
+    public List<InteractableBehaviour> GetInteractablesInRange()
+    {
+        return m_InteractablesInRange;
+    }
+
+    public bool TryInteractWith(InteractableBehaviour interactable)
+    {
+        if (m_InteractablesInRange.Contains(interactable))
+        {
+            interactable.Interact();
+            return true;
+        }
+        return false;
+    }
+
     private void OnEnable()
     {
         _triggerCallbacksRef.OnTriggerEnterCallback += OnTriggerEnterHandle;

@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GenericStateMachine;
 
 public class CharacterFSM : MonoBehaviour
 {
-    private CharacterActionsController _actions;
-
+    private CharacterActionsController m_Actions;
+    private StateMachine m_StateMachine;
 
     private void Awake()
     {
-        _actions = GetComponent<CharacterActionsController>();
+        m_Actions = GetComponent<CharacterActionsController>();
+        m_StateMachine = new StateMachine();
     }
 
     private void Start()

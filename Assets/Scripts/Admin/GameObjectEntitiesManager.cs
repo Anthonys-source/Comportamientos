@@ -22,7 +22,7 @@ public class GameObjectEntitiesManager : MonoBehaviour
             var charCont = reg.GetComponentsContainer<CharacterComponent>();
             var invCont = reg.GetComponentsContainer<InventoryComponent>();
 
-            ID entityID = new ID(c.m_CharacterNameID);
+            ID entityID = new ID(c.CharacterNameID);
 
             MoodComponent moodComp = new MoodComponent();
             moodComp.m_ID = entityID;

@@ -10,14 +10,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CharacterEntity))]
 public class CharacterActionsController : MonoBehaviour
 {
-    private NavMeshAgent _navmeshAgent;
-    private InteractionsBehaviour _interactionsBehaviour;
     private CharacterEntity _entity;
+    private InteractionsBehaviour _interactionsBehaviour;
+    private NavMeshAgent _navmeshAgent;
 
     private float m_BaseMovementSpeed = 10.0f;
 
 
-    // TODO: Populate with more events
     public event Action<Vector3, float> OnMoveToStarted;
     public event Action<Vector3, float> OnMoveToChanged;
     public event Action<Vector3, float> OnMoveToArrived;
@@ -36,20 +35,45 @@ public class CharacterActionsController : MonoBehaviour
 
     public void TryPickupItem(ID itemID)
     {
-
+        TryInteractWith(itemID);
     }
+
     public void MoveTo(Vector3 pos, float speedPercentage)
     {
+        OnMoveToStarted.Invoke(pos, speedPercentage);
         _navmeshAgent.SetDestination(pos);
         _navmeshAgent.speed = m_BaseMovementSpeed * speedPercentage;
     }
-    public void TryInteractWith(ID interactableID) { }
+
+    public void TryInteractWith(ID interactableID)
+    {
+        var i = _interactionsBehaviour.GetInteractablesInRange();
+        for (int j = 0; j < i.Count; j++)
+            if (i[j].EntityID == interactableID)
+            {
+                OnInteractionStarted.Invoke(i[j]);
+                _interactionsBehaviour.TryInteractWith(i[j]);
+                OnInteractionFinished.Invoke(i[j]);
+            }
+    }
+
     public void LookAt(Vector3 dir)
     {
         gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, dir);
     }
-    public void GetAngry() { }
-    public void GetHappy() { }
+
+    public void GetAngry()
+    {
+        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entity.CharacterID); // Should Cache Component
+        comp.m_MoodValue -= 10;
+    }
+
+    public void GetHappy()
+    {
+        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entity.CharacterID); // Should Cache Component
+        comp.m_MoodValue += 10;
+    }
+
     public void Jump() { }
 
 
