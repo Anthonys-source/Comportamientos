@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class InventoryComponent
 {
     public ID m_ID;
-    public List<Item> m_Items;
+    public List<InventoryItem> m_ItemsList = new List<InventoryItem>();
+}
 
-    [Serializable]
-    public struct Item
-    {
-        public ID m_ItemID;
-        public int m_Ammount;
-    }
+[Serializable]
+public class InventoryItem
+{
+    public ID m_ItemID;
+    public int m_Amount;
 }

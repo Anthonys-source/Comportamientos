@@ -8,13 +8,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(InteractionsBehaviour))]
 [RequireComponent(typeof(CharacterEntity))]
+[RequireComponent(typeof(EntityID))]
 public class CharacterActionsController : MonoBehaviour
 {
+    private EntityID _entityID;
     private CharacterEntity _entity;
     private InteractionsBehaviour _interactionsBehaviour;
     private NavMeshAgent _navmeshAgent;
-
-    private float m_BaseMovementSpeed = 10.0f;
 
 
     public event Action<Vector3, float> OnMoveToStarted;
@@ -42,7 +42,7 @@ public class CharacterActionsController : MonoBehaviour
     {
         OnMoveToStarted.Invoke(pos, speedPercentage);
         _navmeshAgent.SetDestination(pos);
-        _navmeshAgent.speed = m_BaseMovementSpeed * speedPercentage;
+        _navmeshAgent.speed = _entity.m_CharComponent.m_WalkingSpeed * speedPercentage;
     }
 
     public void TryInteractWith(ID interactableID)
@@ -64,13 +64,13 @@ public class CharacterActionsController : MonoBehaviour
 
     public void GetAngry()
     {
-        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entity.CharacterID); // Should Cache Component
+        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entityID.GetID()); // Should Cache Component
         comp.m_MoodValue -= 10;
     }
 
     public void GetHappy()
     {
-        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entity.CharacterID); // Should Cache Component
+        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entityID.GetID()); // Should Cache Component
         comp.m_MoodValue += 10;
     }
 

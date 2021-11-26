@@ -23,7 +23,7 @@ public struct ID
         return m_ID;
     }
 
-    public bool Initialized() => m_Initialized;
+    public bool IsInitialized() => m_Initialized;
 
     public static bool operator ==(ID a, ID b)
     {

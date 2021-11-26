@@ -4,6 +4,7 @@ using UnityEngine;
 public class InteractionsBehaviour : MonoBehaviour
 {
     [SerializeField] private TriggerCallbacksRef _triggerCallbacksRef;
+    private EntityID m_EntityID;
 
     private List<InteractableBehaviour> m_InteractablesInRange = new List<InteractableBehaviour>();
 
@@ -11,7 +12,7 @@ public class InteractionsBehaviour : MonoBehaviour
     public void Interact()
     {
         if (m_InteractablesInRange.Count > 0)
-            m_InteractablesInRange[0].Interact();
+            m_InteractablesInRange[0].Interact(m_EntityID.GetID());
     }
 
     public List<InteractableBehaviour> GetInteractablesInRange()
@@ -23,10 +24,15 @@ public class InteractionsBehaviour : MonoBehaviour
     {
         if (m_InteractablesInRange.Contains(interactable))
         {
-            interactable.Interact();
+            interactable.Interact(m_EntityID.GetID());
             return true;
         }
         return false;
+    }
+
+    private void Awake()
+    {
+        m_EntityID = GetComponent<EntityID>();
     }
 
     private void OnEnable()

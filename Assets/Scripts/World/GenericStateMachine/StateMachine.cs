@@ -9,7 +9,7 @@ namespace GenericStateMachine
     public class StateMachine
     {
         [SerializeField] private State m_CurrentState;
-        private Dictionary<ID, State> m_StatesCache;
+        private Dictionary<ID, State> m_StatesCache = new Dictionary<ID, State>();
 
 
         public void Initialize(ID startingStateID)
@@ -24,7 +24,7 @@ namespace GenericStateMachine
         {
             m_CurrentState.OnStateExit();
             m_StatesCache.TryGetValue(newStateID, out State newState);
-
+            m_CurrentState = newState;
 #if UNITY_EDITOR
             if (newState == null) Debug.LogError($"Couldn't find state to transition to with given ID [{newStateID.NameID}]");
 #endif
@@ -35,6 +35,16 @@ namespace GenericStateMachine
         public void AddState(ID stateID, State state)
         {
             m_StatesCache.Add(stateID, state);
+        }
+
+        public void Update()
+        {
+            m_CurrentState.OnStateUpdate();
+        }
+
+        public void FixedUpdate()
+        {
+            m_CurrentState.OnStateFixedUpdate();
         }
     }
 }

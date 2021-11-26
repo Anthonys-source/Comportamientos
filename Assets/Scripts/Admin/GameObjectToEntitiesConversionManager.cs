@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectEntitiesManager : MonoBehaviour
+public class GameObjectToEntitiesConversionManager : MonoBehaviour
 {
-    public static GameObjectEntitiesManager s_Instance;
+    public static GameObjectToEntitiesConversionManager s_Instance;
 
     [SerializeField] private List<CharacterEntity> m_CharacterEntities = new List<CharacterEntity>();
     [SerializeField] private List<ItemEntity> m_ItemEntities = new List<ItemEntity>();
@@ -22,7 +22,7 @@ public class GameObjectEntitiesManager : MonoBehaviour
             var charCont = reg.GetComponentsContainer<CharacterComponent>();
             var invCont = reg.GetComponentsContainer<InventoryComponent>();
 
-            ID entityID = new ID(c.CharacterNameID);
+            ID entityID = c.GetComponent<EntityID>().GetID();
 
             MoodComponent moodComp = new MoodComponent();
             moodComp.m_ID = entityID;
@@ -51,7 +51,7 @@ public class GameObjectEntitiesManager : MonoBehaviour
         }
     }
 
-    public static GameObjectEntitiesManager GetInst()
+    public static GameObjectToEntitiesConversionManager GetInst()
     {
         return s_Instance;
     }

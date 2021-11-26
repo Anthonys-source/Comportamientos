@@ -9,7 +9,7 @@ namespace GenericStateMachine
     {
         public ID m_TargetStateID;
         [SerializeField] private List<Condition> m_ConditionsList = new List<Condition>();
-        private StateMachine m_Sm;
+        [NonSerialized] private StateMachine m_Sm;
 
         public void AddCondition(Condition condition) => m_ConditionsList.Add(condition);
 

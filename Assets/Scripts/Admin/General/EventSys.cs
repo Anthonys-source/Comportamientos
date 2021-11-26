@@ -36,7 +36,7 @@ public class EventSys
         return evt;
     }
 
-    public bool GetEventChannel<T>(ID evtId, out T evt) where T : class
+    public bool GetEventChannel<T>(ID evtId, out T evt) where T : class, new()
     {
         if (m_Events.TryGetValue(evtId, out object evtObj))
         {
@@ -45,8 +45,9 @@ public class EventSys
         }
         else
         {
-            evt = null;
-            Debug.LogError("Event not found");
+            evt = new T();
+            m_Events.Add(evtId, evt);
+            Debug.LogWarning("Event not found, created one instead");
             return false;
         }
     }
@@ -60,7 +61,8 @@ public class EventSys
         }
         else
         {
-            evt = null;
+            evt = new EventChannelVoid();
+            m_Events.Add(evtId, evt);
             Debug.LogError("Event not found");
             return false;
         }

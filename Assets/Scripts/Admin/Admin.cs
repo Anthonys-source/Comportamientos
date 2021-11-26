@@ -6,7 +6,7 @@ public class Admin : MonoBehaviour
 {
     private static Admin s_Admin;
 
-    [SerializeField] private GameObjectEntitiesManager _gameObjectEntities;
+    [SerializeField] private GameObjectToEntitiesConversionManager _gameObjectEntities;
     [SerializeField] private ComponentsRegistry m_ComponentsRegistry = new ComponentsRegistry();
     [SerializeField] private GameEventSystem m_GameEventSystem = new GameEventSystem();
     private SystemsManager m_SystemsManager = new SystemsManager();
@@ -24,7 +24,7 @@ public class Admin : MonoBehaviour
         m_GameEventSystem.Initialize();
         m_ComponentsRegistry.Initialize();
         _gameObjectEntities.Initialize(m_ComponentsRegistry);
-        m_SystemsManager.Initialize(this);
+        m_SystemsManager.Initialize(m_ComponentsRegistry, m_GameEventSystem);
     }
 
     public void Update()

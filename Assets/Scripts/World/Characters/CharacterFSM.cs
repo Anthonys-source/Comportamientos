@@ -7,7 +7,7 @@ using GenericStateMachine;
 public class CharacterFSM : MonoBehaviour
 {
     private CharacterActionsController m_Actions;
-    private StateMachine m_StateMachine;
+    [SerializeField] private StateMachine m_StateMachine;
 
     private void Awake()
     {
@@ -26,8 +26,8 @@ public class CharacterFSM : MonoBehaviour
 
         // Move Character
         // _actions.MoveTo(targetPos, 1);
-        GameEventSystem.GetInst().GetGlobalEventSystem().AddEventChannel<int>(new ID("baker_goes_to_sleep"));
-        GameEventSystem.GetInst().GetGlobalEventSystem().GetEventChannel(new ID("baker_goes_to_sleep"), out EventChannel<int> evt);
+        GameEventSystem.GetInst().GetGlobalEventSystem().AddEventChannel<int>(EventIDs.baker_goes_to_sleep);
+        GameEventSystem.GetInst().GetGlobalEventSystem().GetEventChannel(EventIDs.baker_goes_to_sleep, out EventChannel<int> evt);
 
         // Event On Character Moved
         // _actions.OnArriveAt += Function;

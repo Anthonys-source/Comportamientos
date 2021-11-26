@@ -5,7 +5,7 @@ using GenericStateMachine;
 
 public class StateMachineTest : MonoBehaviour
 {
-    private StateMachine m_Sm;
+    private StateMachine m_Sm = new StateMachine();
 
     private void Awake()
     {
@@ -31,6 +31,11 @@ public class StateMachineTest : MonoBehaviour
         m_Sm.AddState(new ID("state_b"), s);
 
         m_Sm.Initialize(new ID("state_a"));
+    }
+
+    private void Update()
+    {
+        m_Sm.Update();
     }
 }
 
@@ -65,7 +70,6 @@ public class LogAction : Action
 
 public class TimerCondition : Condition
 {
-    private bool m_Elapsed = false;
     private float m_TimeElapsed = 0.0f;
 
     public override void Initialize(StateMachine sm)
@@ -74,7 +78,6 @@ public class TimerCondition : Condition
 
     public override void OnStateEnter()
     {
-        m_Elapsed = false;
         m_TimeElapsed = 0.0f;
     }
 

@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableBehaviour : MonoBehaviour
 {
+    public event Action<ID> OnInteraction;
+
     public ID EntityID => m_EntityID;
     public string m_InteractableIDName;
 
@@ -15,9 +18,12 @@ public class InteractableBehaviour : MonoBehaviour
         m_EntityID = new ID(m_InteractableIDName);
     }
 
-    public void Interact()
+    public void Interact(ID InteracterID)
     {
         Debug.Log($"Interacted with [{gameObject.name}]");
+        OnInteraction?.Invoke(InteracterID);
+
+        // Interaction Animation
         StopAllCoroutines();
         StartCoroutine(ColorFlashAnimation());
     }
