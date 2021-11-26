@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1223709135610665563}
   - component: {fileID: 539169755}
   - component: {fileID: 178330565773672705}
+  - component: {fileID: 1296342875}
   m_Layer: 0
   m_Name: Item_Sphere
   m_TagString: Untagged
@@ -130,3 +131,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractableIDName: bread
   m_Renderer: {fileID: 1223709135610665564}
+--- !u!114 &1296342875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223709135610665562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508555a73f5d2f547a2658057bf84ab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemIDName: bread

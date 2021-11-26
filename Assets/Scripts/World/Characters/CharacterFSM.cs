@@ -12,7 +12,9 @@ public class CharacterFSM : MonoBehaviour
     private void Awake()
     {
         m_Actions = GetComponent<CharacterActionsController>();
+
         m_StateMachine = new StateMachine();
+        // Init State Machine
     }
 
     private void Start()
