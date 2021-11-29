@@ -21,6 +21,8 @@ public class CharacterEntity : MonoBehaviour
         m_CharComponent = registry.GetComponentFromEntity<CharacterComponent>(m_EntityID.GetID());
         m_MoodComponent = registry.GetComponentFromEntity<MoodComponent>(m_EntityID.GetID());
         m_InventoryComponent = registry.GetComponentFromEntity<InventoryComponent>(m_EntityID.GetID());
+
+        m_CharComponent.m_WalkingSpeed = 10;
     }
 
     private void Update()

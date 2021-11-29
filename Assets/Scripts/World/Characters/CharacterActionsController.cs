@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,14 +15,8 @@ public class CharacterActionsController : MonoBehaviour
     private InteractionsBehaviour _interactionsBehaviour;
     private NavMeshAgent _navmeshAgent;
 
-
-    public event Action<Vector3, float> OnMoveToStarted;
-    public event Action<Vector3, float> OnMoveToChanged;
-    public event Action<Vector3, float> OnMoveToArrived;
-
-    public event Action<InteractableBehaviour> OnInteractionStarted;
-    public event Action<InteractableBehaviour> OnInteractionInterrupted;
-    public event Action<InteractableBehaviour> OnInteractionFinished;
+    private Queue<CharacterAction> m_Actions = new Queue<CharacterAction>();
+    private CharacterAction m_CurrentAction;
 
 
     private void Awake()
@@ -33,16 +26,32 @@ public class CharacterActionsController : MonoBehaviour
         _entity = GetComponent<CharacterEntity>();
     }
 
-    public void TryPickupItem(ID itemID)
+    private void Update()
     {
-        TryInteractWith(itemID);
+        // Very Unoptimized
+        if (m_Actions.Count > 0 && m_CurrentAction == null)
+        {
+            m_CurrentAction = m_Actions.Peek();
+            m_CurrentAction.OnFinishEvent += RemoveCurrentAction;
+            m_CurrentAction.Start();
+        }
+        if (m_CurrentAction != null)
+            m_CurrentAction.Update(Time.deltaTime);
+    }
+
+    private void RemoveCurrentAction()
+    {
+        if (m_CurrentAction != null)
+            m_CurrentAction.OnFinishEvent -= RemoveCurrentAction;
+        m_Actions.Dequeue();
+        m_CurrentAction = null;
     }
 
     public void MoveTo(Vector3 pos, float speedPercentage)
     {
-        OnMoveToStarted.Invoke(pos, speedPercentage);
-        _navmeshAgent.SetDestination(pos);
-        _navmeshAgent.speed = _entity.m_CharComponent.m_WalkingSpeed * speedPercentage;
+        var action = new MoveAction(); // Big GC
+        action.Initialize(_entity, _navmeshAgent, pos, speedPercentage);
+        m_Actions.Enqueue(action);
     }
 
     public void TryInteractWith(ID interactableID)
@@ -50,11 +59,7 @@ public class CharacterActionsController : MonoBehaviour
         var i = _interactionsBehaviour.GetInteractablesInRange();
         for (int j = 0; j < i.Count; j++)
             if (i[j].EntityID == interactableID)
-            {
-                OnInteractionStarted.Invoke(i[j]);
                 _interactionsBehaviour.TryInteractWith(i[j]);
-                OnInteractionFinished.Invoke(i[j]);
-            }
     }
 
     public void LookAt(Vector3 dir)
@@ -76,10 +81,10 @@ public class CharacterActionsController : MonoBehaviour
 
     public void Jump() { }
 
-
-    public void InteractWithClosestObjectAt(Vector3 pos) { }
     public void InteractWithClosest()
     {
-        _interactionsBehaviour.Interact();
+        var action = new InteractAction();
+        action.Initialize(_interactionsBehaviour);
+        m_Actions.Enqueue(action);
     }
 }

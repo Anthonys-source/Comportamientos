@@ -28,6 +28,7 @@ public class CharacterPlayerInput : MonoBehaviour
                 if (hits[i].collider.gameObject.name == "Ground")
                 {
                     _charActions.MoveTo(hits[i].point, 1);
+                    _charActions.InteractWithClosest();
                     break;
                 }
             }
