@@ -9,12 +9,6 @@ public class InteractionsBehaviour : MonoBehaviour
     private List<InteractableBehaviour> m_InteractablesInRange = new List<InteractableBehaviour>();
 
 
-    public void Interact()
-    {
-        if (m_InteractablesInRange.Count > 0)
-            m_InteractablesInRange[0].Interact(m_EntityID.GetID());
-    }
-
     public List<InteractableBehaviour> GetInteractablesInRange()
     {
         return m_InteractablesInRange;

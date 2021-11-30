@@ -10,6 +10,7 @@ public class PickupItem : MonoBehaviour
     private InteractableBehaviour m_Interactable;
     private EventChannel<InventoryItemEvtArgs> m_AddItemEventChannel;
 
+
     private void Awake()
     {
         entityID = GetComponent<EntityID>();

@@ -2,34 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoodMeter : MonoBehaviour
+public class WorkstationProgressMeter : MonoBehaviour
 {
-    [SerializeField] private EntityID m_EntityID;
+    [SerializeField] private Transform m_MeterContainer;
     [SerializeField] private Transform m_MeterTransform;
     [SerializeField] private MeshRenderer m_MeterRenderer;
     private MaterialPropertyBlock m_PropBlock;
-    private MoodComponent m_MoodComp;
-    private int m_PreviousMood = 0;
 
 
     private void Awake()
     {
-        m_MoodComp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(m_EntityID.GetID());
         m_PropBlock = new MaterialPropertyBlock();
     }
 
     private void Start()
     {
-        UpdateMeter(m_MoodComp.m_MoodValue);
+        HideMeter();
+        UpdateMeter(0);
     }
 
-    private void Update()
+    public void ShowMeter()
     {
-        if ((int)m_MoodComp.m_MoodValue != m_PreviousMood)
-        {
-            UpdateMeter(m_MoodComp.m_MoodValue / 100.0f);
-            m_PreviousMood = (int)m_MoodComp.m_MoodValue;
-        }
+        m_MeterContainer.gameObject.SetActive(true);
+    }
+
+    public void HideMeter()
+    {
+        m_MeterContainer.gameObject.SetActive(false);
     }
 
     public void UpdateMeter(float percentage)
