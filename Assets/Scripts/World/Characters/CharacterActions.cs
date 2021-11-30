@@ -17,7 +17,7 @@ public class CharacterActions : MonoBehaviour
     private InteractionsBehaviour _interactionsBehaviour;
     private NavMeshAgent _navmeshAgent;
 
-    private ActionsScheduler m_ActionsScheduler = new ActionsScheduler();
+    [SerializeField] private ActionsScheduler m_ActionsScheduler = new ActionsScheduler();
 
 
     private void Awake()
@@ -40,12 +40,12 @@ public class CharacterActions : MonoBehaviour
         m_ActionsScheduler.AddAction(action);
     }
 
-    public void TryInteractWith(ID interactableID)
+    public TryInteractAction TryInteractWith(ID interactableID)
     {
-        var i = _interactionsBehaviour.GetInteractablesInRange();
-        for (int j = 0; j < i.Count; j++)
-            if (i[j].m_EntityID.GetID() == interactableID)
-                _interactionsBehaviour.TryInteractWith(i[j]);
+        var action = new TryInteractAction();
+        action.Initialize(_interactionsBehaviour, interactableID);
+        m_ActionsScheduler.AddAction(action);
+        return action;
     }
 
     public void LookAt(Vector3 dir)
@@ -69,13 +69,14 @@ public class CharacterActions : MonoBehaviour
 
     public void InteractWithClosest()
     {
-        var action = new InteractAction();
+        var action = new InteractWithRandomAction();
         action.Initialize(_interactionsBehaviour);
         m_ActionsScheduler.AddAction(action);
     }
 }
 
 
+[System.Serializable]
 public class ActionsScheduler
 {
     private Queue<CharacterAction> m_Actions = new Queue<CharacterAction>();
@@ -97,10 +98,10 @@ public class ActionsScheduler
         // Very Unoptimized
         if (m_Actions.Count > 0 && m_CurrentAction == null)
         {
+            m_InProgress = true;
             m_CurrentAction = m_Actions.Peek();
             m_CurrentAction.OnFinishEvent += RemoveCurrentAction;
             m_CurrentAction.Start();
-            m_InProgress = true;
         }
         if (m_CurrentAction != null)
             m_CurrentAction.Update(Time.deltaTime);
@@ -109,6 +110,24 @@ public class ActionsScheduler
     public void AddAction(CharacterAction action)
     {
         m_Actions.Enqueue(action);
+    }
+
+    public void SetAction(CharacterAction action)
+    {
+        CancelAllActions();
+        m_Actions.Enqueue(action);
+    }
+
+    public void CancelCurrentAction()
+    {
+        if (m_CurrentAction != null)
+            m_CurrentAction.Cancel();
+    }
+
+    public void CancelAllActions()
+    {
+        CancelCurrentAction();
+        m_Actions.Clear();
     }
 
     // TODO: Override all actions methods

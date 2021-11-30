@@ -265,7 +265,6 @@ GameObject:
   - component: {fileID: 8191351112147251298}
   - component: {fileID: 3747141939766898710}
   - component: {fileID: 7613731184021903464}
-  - component: {fileID: 4578118453199871026}
   - component: {fileID: 1338834531}
   m_Layer: 0
   m_Name: Bob
@@ -398,6 +397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dc6db30cc93874e89272fdf67e7b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ActionsScheduler:
+    m_InProgress: 0
 --- !u!114 &7613731184021903464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,21 +413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ItemsInInteractionRange: []
   m_CharactersInRange: []
---- !u!114 &4578118453199871026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001125315308428633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d992caee355b614bb3234466319b17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StateMachine:
-    m_CurrentState:
-      m_TransitionsList: []
 --- !u!114 &1338834531
 MonoBehaviour:
   m_ObjectHideFlags: 0

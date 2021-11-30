@@ -6,6 +6,8 @@ using UnityEngine;
 public class InteractableBehaviour : MonoBehaviour
 {
     public event Action<ID> OnInteraction;
+    public event Action<ID> OnCompleted;
+
     public event Action<InteractableBehaviour> OnDestroyed;
 
     [HideInInspector] public EntityID m_EntityID;
@@ -18,7 +20,6 @@ public class InteractableBehaviour : MonoBehaviour
 
     public void Interact(ID InteracterID)
     {
-        Debug.Log($"Interacted with [{gameObject.name}]");
         OnInteraction?.Invoke(InteracterID);
 
         // Interaction Animation
@@ -26,6 +27,10 @@ public class InteractableBehaviour : MonoBehaviour
         StartCoroutine(ColorFlashAnimation());
     }
 
+    public void CompleteInteraction(ID interacterID)
+    {
+        OnCompleted?.Invoke(interacterID);
+    }
 
     public IEnumerator ColorFlashAnimation()
     {

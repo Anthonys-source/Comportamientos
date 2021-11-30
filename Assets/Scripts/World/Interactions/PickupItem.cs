@@ -18,9 +18,10 @@ public class PickupItem : MonoBehaviour
         EventSystem.GetInst().GetGlobal().GetEventChannel(new ID("add_item_to_inventory"), out m_AddItemEventChannel);
     }
 
-    private void Pickup(ID InteracterID)
+    private void Pickup(ID interacterID)
     {
-        m_AddItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = InteracterID, m_ItemID = entityID.GetID() });
+        m_Interactable.CompleteInteraction(interacterID);
+        m_AddItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = entityID.GetID() });
         Destroy(gameObject);
     }
 }

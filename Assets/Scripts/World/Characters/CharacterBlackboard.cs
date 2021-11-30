@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CharacterBlackboard : MonoBehaviour
 {
+    public event Action OnInitialized;
+
     public List<ItemBlackboard> m_ItemsInVisionRange = new List<ItemBlackboard>();
     public List<ID> m_ItemsInInteractionRange = new List<ID>();
 
@@ -15,9 +17,22 @@ public class CharacterBlackboard : MonoBehaviour
     RaycastHit[] hits = new RaycastHit[10];
     private float updateTime = 0.0f;
 
+
     private void Awake()
     {
         _interactions = GetComponent<InteractionsBehaviour>();
+    }
+
+    private void Start()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        UpdateItemsInInteractionRange();
+        UpdateItemsInVisionRange();
+        OnInitialized?.Invoke();
     }
 
     public void Update()

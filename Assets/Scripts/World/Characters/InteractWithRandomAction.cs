@@ -1,4 +1,4 @@
-﻿public class InteractAction : CharacterAction
+﻿public class InteractWithRandomAction : CharacterAction
 {
     private InteractionsBehaviour _interactionsBehaviour;
 
