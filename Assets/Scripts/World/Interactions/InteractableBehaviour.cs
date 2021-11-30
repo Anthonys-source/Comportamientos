@@ -6,16 +6,14 @@ using UnityEngine;
 public class InteractableBehaviour : MonoBehaviour
 {
     public event Action<ID> OnInteraction;
+    public event Action<InteractableBehaviour> OnDestroyed;
 
-    public ID EntityID => m_EntityID;
-    public string m_InteractableIDName;
-
-    private ID m_EntityID;
+    [HideInInspector] public EntityID m_EntityID;
     [SerializeField] private MeshRenderer m_Renderer;
 
     private void Awake()
     {
-        m_EntityID = new ID(m_InteractableIDName);
+        m_EntityID = GetComponent<EntityID>();
     }
 
     public void Interact(ID InteracterID)
@@ -59,5 +57,10 @@ public class InteractableBehaviour : MonoBehaviour
             t -= 0.1f;
             yield return wait;
         }
+    }
+
+    public void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
     }
 }

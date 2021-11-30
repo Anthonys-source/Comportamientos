@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class GameEventSystem : Singleton<GameEventSystem>
+public class EventSystem : Singleton<EventSystem>
 {
     private EventSys m_GlobalEventSystem;
 
@@ -12,7 +12,7 @@ public class GameEventSystem : Singleton<GameEventSystem>
         m_GlobalEventSystem = new EventSys();
     }
 
-    public EventSys GetGlobalEventSystem()
+    public EventSys GetGlobal()
     {
         return m_GlobalEventSystem;
     }

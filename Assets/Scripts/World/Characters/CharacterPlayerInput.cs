@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(CharacterActionsController))]
+[RequireComponent(typeof(CharacterActions))]
 public class CharacterPlayerInput : MonoBehaviour
 {
     private Camera _cam;
-    private CharacterActionsController _charActions;
+    private CharacterActions _charActions;
 
 
     private void Awake()
     {
-        _charActions = GetComponent<CharacterActionsController>();
+        _charActions = GetComponent<CharacterActions>();
         _cam = Camera.main;
     }
 

@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 5263672812158587915}
   - component: {fileID: 5263672812158587914}
   - component: {fileID: 5263672812158587925}
+  - component: {fileID: 2214127780638343999}
   - component: {fileID: 1299746124}
   m_Layer: 0
   m_Name: Mesh
@@ -172,6 +173,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2214127780638343999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263672812158587924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e0675cd75bc714ca6a00256cc6484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IDName: 
 --- !u!114 &1299746124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,5 +198,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1441aa45519e924a866ef731b6c7a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractableIDName: 
+  m_EntityID: {fileID: 0}
   m_Renderer: {fileID: 5263672812158587914}

@@ -8,7 +8,7 @@ public class Admin : MonoBehaviour
 
     [SerializeField] private GameObjectToEntitiesConversionManager _gameObjectEntities;
     [SerializeField] private ComponentsRegistry m_ComponentsRegistry = new ComponentsRegistry();
-    [SerializeField] private GameEventSystem m_GameEventSystem = new GameEventSystem();
+    [SerializeField] private EventSystem m_GameEventSystem = new EventSystem();
     private SystemsManager m_SystemsManager = new SystemsManager();
 
 

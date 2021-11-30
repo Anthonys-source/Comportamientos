@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1223709135610665565}
   - component: {fileID: 1223709135610665564}
   - component: {fileID: 1223709135610665563}
+  - component: {fileID: 1233376916887850571}
   - component: {fileID: 539169755}
   - component: {fileID: 178330565773672705}
   - component: {fileID: 1296342875}
@@ -98,6 +99,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1233376916887850571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223709135610665562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e0675cd75bc714ca6a00256cc6484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IDName: bread
 --- !u!114 &539169755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815cdb9cee18ee54c9687181d30939ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemNameID: bread
   m_ItemComponent:
     m_ID:
       m_NameID: 
@@ -129,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1441aa45519e924a866ef731b6c7a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractableIDName: bread
+  m_EntityID: {fileID: 0}
   m_Renderer: {fileID: 1223709135610665564}
 --- !u!114 &1296342875
 MonoBehaviour:
@@ -143,4 +156,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508555a73f5d2f547a2658057bf84ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemIDName: bread

@@ -52,6 +52,7 @@ public class InteractionsBehaviour : MonoBehaviour
         if (other.TryGetComponent(out InteractableBehaviour interactable))
         {
             m_InteractablesInRange.Add(interactable);
+            interactable.OnDestroyed += RemoveInteractable;
         }
     }
 
@@ -60,6 +61,12 @@ public class InteractionsBehaviour : MonoBehaviour
         if (other.TryGetComponent(out InteractableBehaviour interactable))
         {
             m_InteractablesInRange.Remove(interactable);
+            interactable.OnDestroyed -= RemoveInteractable;
         }
+    }
+
+    private void RemoveInteractable(InteractableBehaviour interactable)
+    {
+        m_InteractablesInRange.Remove(interactable);
     }
 }

@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class ItemEntity : MonoBehaviour
 {
-    [Header("Entity Identifier")]
-    public string m_ItemNameID;
-    private ID m_ID;
+    private EntityID _entityID;
 
     [Header("Runtime Component Data")]
     [SerializeField] private ItemComponent m_ItemComponent;
@@ -15,8 +13,8 @@ public class ItemEntity : MonoBehaviour
 
     private void Awake()
     {
-        m_ID = new ID(m_ItemNameID);
+        _entityID = GetComponent<EntityID>();
         ComponentsRegistry registry = ComponentsRegistry.GetInst();
-        m_ItemComponent = registry.GetComponentFromEntity<ItemComponent>(m_ID);
+        m_ItemComponent = registry.GetComponentFromEntity<ItemComponent>(_entityID.GetID());
     }
 }

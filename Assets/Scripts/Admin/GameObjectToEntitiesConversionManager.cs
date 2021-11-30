@@ -42,7 +42,7 @@ public class GameObjectToEntitiesConversionManager : MonoBehaviour
             var c = m_ItemEntities[i];
             var itmCont = reg.GetComponentsContainer<ItemComponent>();
 
-            ID entityID = new ID(c.m_ItemNameID);
+            ID entityID = c.GetComponent<EntityID>().GetID();
 
             ItemComponent itmComp = new ItemComponent();
             itmComp.m_ID = entityID;

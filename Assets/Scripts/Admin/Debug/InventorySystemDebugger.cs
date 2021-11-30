@@ -11,7 +11,7 @@ public class InventorySystemDebugger : MonoBehaviour
 
     private void Awake()
     {
-        GameEventSystem.GetInst().GetGlobalEventSystem().GetEventChannel(new ID("add_item_to_inventory"), out m_AddItemEventChannel);
+        EventSystem.GetInst().GetGlobal().GetEventChannel(new ID("add_item_to_inventory"), out m_AddItemEventChannel);
     }
 
     public void AddItem()

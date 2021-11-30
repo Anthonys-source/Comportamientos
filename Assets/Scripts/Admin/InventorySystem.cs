@@ -3,11 +3,11 @@
     private ComponentsContainer<InventoryComponent> m_InventoryComp;
 
     // Get components and events here
-    public override void Initialize(ComponentsRegistry c, GameEventSystem e)
+    public override void Initialize(ComponentsRegistry c, EventSystem e)
     {
         m_InventoryComp = c.GetComponentsContainer<InventoryComponent>();
 
-        var evt = e.GetGlobalEventSystem();
+        var evt = e.GetGlobal();
         evt.AddEventChannel<InventoryItemEvtArgs>(new ID("add_item_to_inventory")).OnInvoked +=
             (args) => AddItemToInventory(args.m_ItemID, args.m_Amount, args.m_InventoryID);
         evt.AddEventChannel<InventoryItemEvtArgs>(new ID("remove_item_from_inventory")).OnInvoked +=

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(CharacterActionsController))]
+[CustomEditor(typeof(CharacterActions))]
 public class CharacterActionsControllerEditor : Editor
 {
-    private CharacterActionsController t;
+    private CharacterActions t;
     Vector2 m_LookDir;
 
     private void Awake()
     {
-        t = target as CharacterActionsController;
+        t = target as CharacterActions;
     }
 
     public override void OnInspectorGUI()
