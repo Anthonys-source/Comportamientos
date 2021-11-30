@@ -10,8 +10,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EntityID))]
 public class CharacterActions : MonoBehaviour
 {
-    public bool InProgress => m_ActionsScheduler.m_InProgress;
-
     private EntityID _entityID;
     private CharacterEntity _entity;
     private InteractionsBehaviour _interactionsBehaviour;
