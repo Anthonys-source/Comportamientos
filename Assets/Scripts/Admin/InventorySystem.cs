@@ -8,9 +8,9 @@
         m_InventoryComp = c.GetComponentsContainer<InventoryComponent>();
 
         var evt = e.GetGlobal();
-        evt.AddEventChannel<InventoryItemEvtArgs>(new ID("add_item_to_inventory")).OnInvoked +=
+        evt.AddEventChannel<InventoryItemEvtArgs>(EventID.ADD_ITEM_TO_INVENTORY).OnInvoked +=
             (args) => AddItemToInventory(args.m_ItemID, args.m_Amount, args.m_InventoryID);
-        evt.AddEventChannel<InventoryItemEvtArgs>(new ID("remove_item_from_inventory")).OnInvoked +=
+        evt.AddEventChannel<InventoryItemEvtArgs>(EventID.REMOVE_ITEM_FROM_INVENTORY).OnInvoked +=
             (args) => RemoveItemFromInventory(args.m_ItemID, args.m_Amount, args.m_InventoryID);
     }
 

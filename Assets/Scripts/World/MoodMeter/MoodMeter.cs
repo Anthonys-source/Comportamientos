@@ -14,7 +14,7 @@ public class MoodMeter : MonoBehaviour
 
     private void Awake()
     {
-        m_MoodComp = ComponentRegistry.GetInst().GetComponentFromEntity<MoodComponent>(m_EntityID.GetTypeID());
+        m_MoodComp = ComponentRegistry.GetInst().GetComponentFromEntity<MoodComponent>(m_EntityID.GetInstID());
         m_PropBlock = new MaterialPropertyBlock();
     }
 

@@ -18,9 +18,9 @@ public class CharacterEntity : MonoBehaviour
     {
         m_EntityID = GetComponent<EntityID>();
         ComponentRegistry registry = ComponentRegistry.GetInst();
-        m_CharComponent = registry.GetComponentFromEntity<CharacterComponent>(m_EntityID.GetTypeID());
-        m_MoodComponent = registry.GetComponentFromEntity<MoodComponent>(m_EntityID.GetTypeID());
-        m_InventoryComponent = registry.GetComponentFromEntity<InventoryComponent>(m_EntityID.GetTypeID());
+        m_CharComponent = registry.GetComponentFromEntity<CharacterComponent>(m_EntityID.GetInstID());
+        m_MoodComponent = registry.GetComponentFromEntity<MoodComponent>(m_EntityID.GetInstID());
+        m_InventoryComponent = registry.GetComponentFromEntity<InventoryComponent>(m_EntityID.GetInstID());
 
         m_CharComponent.m_WalkingSpeed = 10;
     }

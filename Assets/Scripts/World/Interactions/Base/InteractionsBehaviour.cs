@@ -18,7 +18,7 @@ public class InteractionsBehaviour : MonoBehaviour
     {
         if (m_InteractablesInRange.Contains(interactable))
         {
-            interactable.Interact(m_EntityID.GetTypeID());
+            interactable.Interact(m_EntityID.GetInstID());
             return true;
         }
         return false;

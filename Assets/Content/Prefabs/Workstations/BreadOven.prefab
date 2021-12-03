@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5263672810936076500}
   m_Layer: 0
-  m_Name: Workstation
+  m_Name: BreadOven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5263672810936076503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.89, y: 0.98, z: 3.26}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5263672812158587912}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 5263672812158587925}
   - component: {fileID: 2214127780638343999}
   - component: {fileID: 1299746124}
-  - component: {fileID: 2497791631024345264}
+  - component: {fileID: 8356013042411303231}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -219,7 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e0675cd75bc714ca6a00256cc6484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IDName: 
+  InstanceID: 
+  TypeID: bread_oven
 --- !u!114 &1299746124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityID: {fileID: 0}
---- !u!114 &2497791631024345264
+--- !u!114 &8356013042411303231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,11 +243,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5263672812158587924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0aa2097396b2104bbaf19e17c8d7205, type: 3}
+  m_Script: {fileID: 11500000, guid: a1a54de67a70345409c50ce738981e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionDuration: 1.5
-  m_Renderer: {fileID: 5263672812158587914}
   m_Meter: {fileID: 5369751983769202461}
   entityID: {fileID: 0}
 --- !u!1 &6277458697710489180
