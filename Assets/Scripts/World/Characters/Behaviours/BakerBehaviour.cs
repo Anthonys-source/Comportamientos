@@ -38,7 +38,7 @@ public class BakerBehaviour : MonoBehaviour
 
         var goToBakery = m_BT.CreateLeafNode("go to bakery", GoToBakery, ArrivedAtBakery);
 
-        var makeBread = m_BT.CreateSequenceNode("make bread", false);
+        var makeBread = m_BT.CreateSelectorNode("make bread");
         var getFlour = m_BT.CreateLeafNode("get flour", GetFlour, FlourAdquired);
         var getYeast = m_BT.CreateLeafNode("get yeast", GetYeast, YeastAdquired);
         var getWater = m_BT.CreateLeafNode("get water", GetWater, WaterAdquired);
@@ -64,42 +64,75 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_GetFlourState = ReturnValues.Running;
 
-        m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.FLOUR).m_Pos, 1.0f);
-        var h = m_Actions.TryInteractWith(ItemID.FLOUR);
+        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (a.HasItem(ItemID.FLOUR, out _))
+        {
+            m_GetFlourState = ReturnValues.Failed;
+        }
+        else
+        {
+            m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.FLOUR).m_Pos, 1.0f);
+            var h = m_Actions.TryInteractWith(ItemID.FLOUR);
 
-        h.OnFailedEvent += () => m_GetFlourState = ReturnValues.Failed;
-        h.OnCompletedEvent += () => m_GetFlourState = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_GetFlourState = ReturnValues.Failed;
+            h.OnCompletedEvent += () => m_GetFlourState = ReturnValues.Succeed;
+        }
     }
 
     private void GetWater()
     {
         m_GetWaterState = ReturnValues.Running;
 
-        m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.WATER).m_Pos, 1.0f);
-        var h = m_Actions.TryInteractWith(ItemID.WATER);
+        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (a.HasItem(ItemID.WATER, out _))
+        {
+            m_GetWaterState = ReturnValues.Failed;
+        }
+        else
+        {
+            m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.WATER).m_Pos, 1.0f);
+            var h = m_Actions.TryInteractWith(ItemID.WATER);
 
-        h.OnFailedEvent += () => m_GetWaterState = ReturnValues.Failed;
-        h.OnCompletedEvent += () => m_GetWaterState = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_GetWaterState = ReturnValues.Failed;
+            h.OnCompletedEvent += () => m_GetWaterState = ReturnValues.Succeed;
+        }
     }
 
     private void GetYeast()
     {
         m_GetYeastState = ReturnValues.Running;
 
-        m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.YEAST).m_Pos, 1.0f);
-        var h = m_Actions.TryInteractWith(ItemID.YEAST);
+        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (a.HasItem(ItemID.YEAST, out _))
+        {
+            m_GetYeastState = ReturnValues.Failed;
+        }
+        else
+        {
+            m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.YEAST).m_Pos, 1.0f);
+            var h = m_Actions.TryInteractWith(ItemID.YEAST);
 
-        h.OnFailedEvent += () => m_GetYeastState = ReturnValues.Failed;
-        h.OnCompletedEvent += () => m_GetYeastState = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_GetYeastState = ReturnValues.Failed;
+            h.OnCompletedEvent += () => m_GetYeastState = ReturnValues.Succeed;
+        }
     }
 
     private void BakeBread()
     {
         m_MakeBreadState = ReturnValues.Running;
 
-        m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.BREAD_OVEN).m_Pos, 1.0f);
-        var h = m_Actions.TryInteractWith(WorkstationID.BREAD_OVEN);
-        h.OnCompletedEvent += () => m_MakeBreadState = ReturnValues.Succeed;
+        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (!a.HasItem(ItemID.YEAST, out _) || !a.HasItem(ItemID.WATER, out _) || !a.HasItem(ItemID.FLOUR, out _))
+        {
+            m_MakeBreadState = ReturnValues.Failed;
+        }
+        else
+        {
+            m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.BREAD_OVEN).m_Pos, 1.0f);
+            var h = m_Actions.TryInteractWith(WorkstationID.BREAD_OVEN);
+            h.OnCompletedEvent += () => m_MakeBreadState = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_MakeBreadState = ReturnValues.Failed;
+        }
     }
 
     private void GoToBakery()
