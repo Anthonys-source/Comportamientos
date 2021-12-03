@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 8191351112147251298}
   - component: {fileID: 3747141939766898710}
   - component: {fileID: 7613731184021903464}
+  - component: {fileID: 5717377902870579374}
   - component: {fileID: 5851070011298601513}
   m_Layer: 0
   m_Name: Baker
@@ -412,8 +413,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58b7f106c0f7d845b2524c6e9e934cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemsInInteractionRange: []
+  m_ItemsInRange: []
+  m_WorkstationsInRange: []
   m_CharactersInRange: []
+--- !u!114 &5717377902870579374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001125315308428633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c974e6ae78d5b874f97f489ae17acccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Waypoints:
+  - m_IDName: bakery
+    m_Transform: {fileID: 0}
 --- !u!114 &5851070011298601513
 MonoBehaviour:
   m_ObjectHideFlags: 0

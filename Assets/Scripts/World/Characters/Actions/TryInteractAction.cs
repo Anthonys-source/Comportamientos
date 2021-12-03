@@ -32,7 +32,9 @@
             }
 
         if (!foundInteractable)
-            Finish();
+        {
+            Fail();
+        }
     }
 
     private void TryInteractAction_OnCompleted(ID obj)

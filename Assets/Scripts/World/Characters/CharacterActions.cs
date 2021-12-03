@@ -39,6 +39,11 @@ public class CharacterActions : MonoBehaviour
         return action;
     }
 
+    public MoveAction MoveTo(Vector3 pos)
+    {
+        return MoveTo(pos, 1.0f);
+    }
+
     public TryInteractAction TryInteractWith(ID interactableID)
     {
         var action = new TryInteractAction();

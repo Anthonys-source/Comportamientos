@@ -13,7 +13,7 @@ public class CharacterWaypoints : MonoBehaviour
         for (int i = 0; i < m_Waypoints.Count; i++)
         {
             var waypoint = m_Waypoints[i];
-            m_WaypointsMap.Add(waypoint.m_ID, waypoint.m_Transform);
+            m_WaypointsMap.Add(new ID(waypoint.m_IDName), waypoint.m_Transform);
         }
     }
 
@@ -22,15 +22,22 @@ public class CharacterWaypoints : MonoBehaviour
         return m_WaypointsMap[waypointID].position;
     }
 
+
+    [System.Serializable]
     public struct InspectorWaypoint
     {
-        public ID m_ID;
+        public string m_IDName;
         public Transform m_Transform;
 
-        public InspectorWaypoint(ID ID, Transform transform)
+        public InspectorWaypoint(string IDName, Transform transform)
         {
-            m_ID = ID;
+            m_IDName = IDName;
             m_Transform = transform;
         }
     }
+}
+
+public static class WaypointID
+{
+    public static readonly ID BAKERY = new ID("bakery");
 }
