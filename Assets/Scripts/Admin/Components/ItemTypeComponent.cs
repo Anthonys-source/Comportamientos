@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class ItemComponent
+public class ItemTypeComponent
 {
     public ID m_ID;
     public string m_Name;

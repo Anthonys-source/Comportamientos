@@ -3,7 +3,7 @@
     private ComponentsContainer<InventoryComponent> m_InventoryComp;
 
     // Get components and events here
-    public override void Initialize(ComponentsRegistry c, EventSystem e)
+    public override void Initialize(ComponentRegistry c, EventSystem e)
     {
         m_InventoryComp = c.GetComponentsContainer<InventoryComponent>();
 

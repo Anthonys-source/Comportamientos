@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Contains most of the useful game + world data, all the data its separated into what is called a "component"
 [Serializable]
-public class ComponentsRegistry : Singleton<ComponentsRegistry>
+public class ComponentRegistry : Singleton<ComponentRegistry>
 {
-    private Dictionary<Type, object> m_Containers = new Dictionary<Type, object>();
+    private Dictionary<Type, object> m_Components = new Dictionary<Type, object>();
     private Dictionary<Type, object> m_SingletonComponents = new Dictionary<Type, object>();
 
     [SerializeField] private ComponentsContainer<CharacterComponent> m_CharacterComponents = new ComponentsContainer<CharacterComponent>();
@@ -14,30 +15,34 @@ public class ComponentsRegistry : Singleton<ComponentsRegistry>
 
     [SerializeField] private ComponentsContainer<BreadBakerComponent> m_BreadBakerComponent = new ComponentsContainer<BreadBakerComponent>();
 
-    [SerializeField] private ComponentsContainer<ItemComponent> m_ItemComponent = new ComponentsContainer<ItemComponent>();
+    [SerializeField] private ComponentsContainer<ItemTypeComponent> m_ItemTypeComponent = new ComponentsContainer<ItemTypeComponent>();
     [SerializeField] private ComponentsContainer<ItemWorldComponent> m_ItemWorldComponent = new ComponentsContainer<ItemWorldComponent>();
 
     [SerializeField] private ComponentsContainer<BuildingZoneComponent> m_BuildingZoneComponent = new ComponentsContainer<BuildingZoneComponent>();
 
 
+    [SerializeField] private BakersComponent m_BakersComponent = new BakersComponent();
+
     public void Initialize()
     {
         s_Instance = this;
-        m_Containers.Add(typeof(CharacterComponent), m_CharacterComponents);
-        m_Containers.Add(typeof(MoodComponent), m_MoodComponents);
-        m_Containers.Add(typeof(InventoryComponent), m_InventoryComponent);
+        m_Components.Add(typeof(CharacterComponent), m_CharacterComponents);
+        m_Components.Add(typeof(MoodComponent), m_MoodComponents);
+        m_Components.Add(typeof(InventoryComponent), m_InventoryComponent);
 
-        m_Containers.Add(typeof(BreadBakerComponent), m_BreadBakerComponent);
+        m_Components.Add(typeof(BreadBakerComponent), m_BreadBakerComponent);
 
-        m_Containers.Add(typeof(ItemComponent), m_ItemComponent);
-        m_Containers.Add(typeof(ItemWorldComponent), m_ItemWorldComponent);
+        m_Components.Add(typeof(ItemTypeComponent), m_ItemTypeComponent);
+        m_Components.Add(typeof(ItemWorldComponent), m_ItemWorldComponent);
 
-        m_Containers.Add(typeof(BuildingZoneComponent), m_BuildingZoneComponent);
+        m_Components.Add(typeof(BuildingZoneComponent), m_BuildingZoneComponent);
+
+        m_SingletonComponents.Add(typeof(BakersComponent), m_BakersComponent);
     }
 
     public ComponentsContainer<T> GetComponentsContainer<T>() where T : class
     {
-        return m_Containers[typeof(T)] as ComponentsContainer<T>;
+        return m_Components[typeof(T)] as ComponentsContainer<T>;
     }
 
     public T GetSingletonComponent<T>() where T : class
@@ -47,7 +52,7 @@ public class ComponentsRegistry : Singleton<ComponentsRegistry>
 
     public T GetComponentFromEntity<T>(ID entityID) where T : class
     {
-        return (m_Containers[typeof(T)] as ComponentsContainer<T>)[entityID];
+        return (m_Components[typeof(T)] as ComponentsContainer<T>)[entityID];
     }
 
     public void GetComponentsFromEntity(Type[] componentTypes, out object[] components)
@@ -55,7 +60,7 @@ public class ComponentsRegistry : Singleton<ComponentsRegistry>
         components = new object[componentTypes.Length];
         for (int i = 0; i < components.Length; i++)
         {
-            components[i] = Convert.ChangeType(m_Containers[componentTypes[i]], componentTypes[i]);
+            components[i] = Convert.ChangeType(m_Components[componentTypes[i]], componentTypes[i]);
         }
     }
 }

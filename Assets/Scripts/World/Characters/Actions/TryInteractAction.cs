@@ -22,7 +22,7 @@
 
         var i = _interactionsBehaviour.GetInteractablesInRange();
         for (int j = 0; j < i.Count; j++)
-            if (i[j].m_EntityID.GetID() == _interactableID)
+            if (i[j].m_EntityID.GetTypeID() == _interactableID)
             {
                 _interactable = i[j];
                 _interactable.OnCompleted += TryInteractAction_OnCompleted;

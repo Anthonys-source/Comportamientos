@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class EntityID : MonoBehaviour
 {
-    [SerializeField] private string m_IDName;
-    private ID m_ID;
+    [SerializeField] private string InstanceID;
+    [SerializeField] private string TypeID;
+    private ID m_TypeID;
+    private ID m_InstanceID;
 
-    public ID GetID()
+    public ID GetTypeID()
     {
-        if (!m_ID.IsInitialized())
-            m_ID = new ID(m_IDName);
-        return m_ID;
+        if (!m_TypeID.IsInitialized())
+            m_TypeID = new ID(TypeID);
+        return m_TypeID;
+    }
+
+    public ID GetInstID()
+    {
+        if (!m_InstanceID.IsInitialized())
+            m_InstanceID = new ID(InstanceID);
+        return m_InstanceID;
     }
 }

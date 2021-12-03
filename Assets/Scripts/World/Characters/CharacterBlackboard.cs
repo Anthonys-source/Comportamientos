@@ -54,7 +54,7 @@ public class CharacterBlackboard : MonoBehaviour
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].collider.TryGetComponent(out PickupItem item))
-                m_ItemsInVisionRange.Add(new ItemBlackboard(item.entityID.GetID(), item.transform.position));
+                m_ItemsInVisionRange.Add(new ItemBlackboard(item.entityID.GetTypeID(), item.transform.position));
         }
     }
 
@@ -63,7 +63,7 @@ public class CharacterBlackboard : MonoBehaviour
         var itm = _interactions.GetInteractablesInRange();
         m_ItemsInInteractionRange.Clear();
         for (int i = 0; i < itm.Count; i++)
-            m_ItemsInInteractionRange.Add(itm[i].m_EntityID.GetID());
+            m_ItemsInInteractionRange.Add(itm[i].m_EntityID.GetTypeID());
     }
 }
 

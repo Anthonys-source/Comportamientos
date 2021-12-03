@@ -8,7 +8,7 @@ public class DebugOverlay : MonoBehaviour
 
     private void Awake()
     {
-        _characterComponents = ComponentsRegistry.GetInst().GetComponentsContainer<CharacterComponent>();
+        _characterComponents = ComponentRegistry.GetInst().GetComponentsContainer<CharacterComponent>();
     }
 
     private void OnGUI()

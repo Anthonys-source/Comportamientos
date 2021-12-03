@@ -53,13 +53,13 @@ public class CharacterActions : MonoBehaviour
 
     public void GetAngry()
     {
-        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entityID.GetID()); // Should Cache Component
+        var comp = ComponentRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entityID.GetTypeID()); // Should Cache Component
         comp.m_MoodValue -= 10;
     }
 
     public void GetHappy()
     {
-        var comp = ComponentsRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entityID.GetID()); // Should Cache Component
+        var comp = ComponentRegistry.GetInst().GetComponentFromEntity<MoodComponent>(_entityID.GetTypeID()); // Should Cache Component
         comp.m_MoodValue += 10;
     }
 

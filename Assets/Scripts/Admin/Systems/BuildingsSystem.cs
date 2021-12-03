@@ -10,6 +10,6 @@ public class BuildingsSystem : MonoBehaviour
 
     public void Initialize()
     {
-        _buildingZoneComponents = ComponentsRegistry.GetInst().GetComponentsContainer<BuildingZoneComponent>();
+        _buildingZoneComponents = ComponentRegistry.GetInst().GetComponentsContainer<BuildingZoneComponent>();
     }
 }

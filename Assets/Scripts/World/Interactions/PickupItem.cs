@@ -22,7 +22,7 @@ public class PickupItem : MonoBehaviour
     private void Pickup(ID interacterID)
     {
         m_Interactable.CompleteInteraction(interacterID);
-        m_AddItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = entityID.GetID() });
+        m_AddItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = entityID.GetTypeID() });
         Destroy(gameObject);
     }
 }

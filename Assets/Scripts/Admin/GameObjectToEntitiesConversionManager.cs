@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Creates Components for all the gameobject entities in the world
 public class GameObjectToEntitiesConversionManager : MonoBehaviour
 {
     public static GameObjectToEntitiesConversionManager s_Instance;
@@ -10,7 +11,7 @@ public class GameObjectToEntitiesConversionManager : MonoBehaviour
     [SerializeField] private List<ItemEntity> m_ItemEntities = new List<ItemEntity>();
 
 
-    public void Initialize(ComponentsRegistry reg)
+    public void Initialize(ComponentRegistry reg)
     {
         s_Instance = this;
 
@@ -21,34 +22,36 @@ public class GameObjectToEntitiesConversionManager : MonoBehaviour
             var moodCont = reg.GetComponentsContainer<MoodComponent>();
             var charCont = reg.GetComponentsContainer<CharacterComponent>();
             var invCont = reg.GetComponentsContainer<InventoryComponent>();
+            var bakers = reg.GetSingletonComponent<BakersComponent>();
 
-            ID entityID = c.GetComponent<EntityID>().GetID();
+            ID instanceID = c.GetComponent<EntityID>().GetInstID();
 
             MoodComponent moodComp = new MoodComponent();
-            moodComp.m_ID = entityID;
+            moodComp.m_ID = instanceID;
             CharacterComponent charComp = new CharacterComponent();
-            charComp.m_ID = entityID;
+            charComp.m_ID = instanceID;
             InventoryComponent invComp = new InventoryComponent();
-            invComp.m_ID = entityID;
+            invComp.m_ID = instanceID;
 
-            moodCont.Add(entityID, moodComp);
-            charCont.Add(entityID, charComp);
-            invCont.Add(entityID, invComp);
+            moodCont.Add(instanceID, moodComp);
+            charCont.Add(instanceID, charComp);
+            invCont.Add(instanceID, invComp);
+            bakers.m_AllBakersList.Add(instanceID);
         }
 
-        // Init Item Entities
-        for (int i = 0; i < m_ItemEntities.Count; i++)
-        {
-            var c = m_ItemEntities[i];
-            var itmCont = reg.GetComponentsContainer<ItemComponent>();
+        //// Init Item Entities
+        //for (int i = 0; i < m_ItemEntities.Count; i++)
+        //{
+        //    var c = m_ItemEntities[i];
+        //    var itmCont = reg.GetComponentsContainer<ItemTypeComponent>();
 
-            ID entityID = c.GetComponent<EntityID>().GetID();
+        //    ID instanceID = c.GetComponent<EntityID>().GetInstID();
 
-            ItemComponent itmComp = new ItemComponent();
-            itmComp.m_ID = entityID;
+        //    ItemTypeComponent itmComp = new ItemTypeComponent();
+        //    itmComp.m_ID = instanceID;
 
-            itmCont.Add(entityID, itmComp);
-        }
+        //    itmCont.Add(instanceID, itmComp);
+        //}
     }
 
     public static GameObjectToEntitiesConversionManager GetInst()

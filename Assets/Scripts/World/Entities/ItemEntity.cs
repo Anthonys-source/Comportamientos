@@ -8,13 +8,13 @@ public class ItemEntity : MonoBehaviour
     private EntityID _entityID;
 
     [Header("Runtime Component Data")]
-    [SerializeField] private ItemComponent m_ItemComponent;
+    [SerializeField] private ItemTypeComponent m_ItemTypeComponent;
 
 
     private void Awake()
     {
         _entityID = GetComponent<EntityID>();
-        ComponentsRegistry registry = ComponentsRegistry.GetInst();
-        m_ItemComponent = registry.GetComponentFromEntity<ItemComponent>(_entityID.GetID());
+        ComponentRegistry registry = ComponentRegistry.GetInst();
+        m_ItemTypeComponent = registry.GetComponentFromEntity<ItemTypeComponent>(_entityID.GetTypeID());
     }
 }

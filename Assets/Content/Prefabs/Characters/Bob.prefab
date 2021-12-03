@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 8191351112147251298}
   - component: {fileID: 3747141939766898710}
   - component: {fileID: 7613731184021903464}
-  - component: {fileID: 1338834531}
+  - component: {fileID: 2500424983307430156}
   m_Layer: 0
   m_Name: Bob
   m_TagString: Untagged
@@ -340,7 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e0675cd75bc714ca6a00256cc6484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IDName: bob_baker
+  InstanceID: 
+  TypeID: 
 --- !u!114 &1863330273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ItemsInInteractionRange: []
   m_CharactersInRange: []
---- !u!114 &1338834531
+--- !u!114 &2500424983307430156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7001125315308428633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9440f8da267a2254dba4c10c5273aa3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7708c523308c687498804ce509de5698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &466034409918301802

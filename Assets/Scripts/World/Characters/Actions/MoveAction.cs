@@ -20,12 +20,10 @@ public class MoveAction : CharacterAction
 
     protected override void OnCalceled()
     {
-        Debug.Log("Move Action Canceled");
     }
 
     protected override void OnStart()
     {
-        Debug.Log("Move Action Started");
         if (_navmeshAgent.SetDestination(pos))
             _navmeshAgent.speed = _entity.m_CharComponent.m_WalkingSpeed * speedPercentage;
         else

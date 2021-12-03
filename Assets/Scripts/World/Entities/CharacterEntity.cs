@@ -17,10 +17,10 @@ public class CharacterEntity : MonoBehaviour
     private void Awake()
     {
         m_EntityID = GetComponent<EntityID>();
-        ComponentsRegistry registry = ComponentsRegistry.GetInst();
-        m_CharComponent = registry.GetComponentFromEntity<CharacterComponent>(m_EntityID.GetID());
-        m_MoodComponent = registry.GetComponentFromEntity<MoodComponent>(m_EntityID.GetID());
-        m_InventoryComponent = registry.GetComponentFromEntity<InventoryComponent>(m_EntityID.GetID());
+        ComponentRegistry registry = ComponentRegistry.GetInst();
+        m_CharComponent = registry.GetComponentFromEntity<CharacterComponent>(m_EntityID.GetTypeID());
+        m_MoodComponent = registry.GetComponentFromEntity<MoodComponent>(m_EntityID.GetTypeID());
+        m_InventoryComponent = registry.GetComponentFromEntity<InventoryComponent>(m_EntityID.GetTypeID());
 
         m_CharComponent.m_WalkingSpeed = 10;
     }
