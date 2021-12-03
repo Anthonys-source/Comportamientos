@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5263672810936076500}
   m_Layer: 0
-  m_Name: BreadOven
+  m_Name: DoughTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 5263672812158587925}
   - component: {fileID: 2214127780638343999}
   - component: {fileID: 1299746124}
-  - component: {fileID: 8356013042411303231}
+  - component: {fileID: 7044409851819059642}
   - component: {fileID: 8448784402200468564}
   m_Layer: 0
   m_Name: Mesh
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InstanceID: 
-  TypeID: bread_oven
+  TypeID: dough_table
 --- !u!114 &1299746124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityID: {fileID: 0}
---- !u!114 &8356013042411303231
+--- !u!114 &7044409851819059642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,10 +244,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5263672812158587924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a54de67a70345409c50ce738981e82, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a7da4f31dd923147888eca0638e9ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionDuration: 1.5
+  m_InteractionDuration: 2
   m_Meter: {fileID: 5369751983769202461}
   entityID: {fileID: 0}
 --- !u!114 &8448784402200468564

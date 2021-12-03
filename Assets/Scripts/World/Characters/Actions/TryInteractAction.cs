@@ -12,10 +12,6 @@
         _interactableID = interactableID;
     }
 
-    protected override void OnCalceled()
-    {
-    }
-
     protected override void OnStart()
     {
         bool foundInteractable = false;
@@ -37,13 +33,17 @@
         }
     }
 
+    protected override void OnUpdate(float deltaTime)
+    {
+    }
+
+    protected override void OnCalceled()
+    {
+    }
+
     private void TryInteractAction_OnCompleted(ID obj)
     {
         _interactable.OnCompleted -= TryInteractAction_OnCompleted;
         Finish();
-    }
-
-    protected override void OnUpdate(float deltaTime)
-    {
     }
 }

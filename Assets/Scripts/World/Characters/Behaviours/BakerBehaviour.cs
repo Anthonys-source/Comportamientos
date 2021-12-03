@@ -14,7 +14,8 @@ public class BakerBehaviour : MonoBehaviour
     private ReturnValues m_GetFlourState = ReturnValues.Running;
     private ReturnValues m_GetYeastState = ReturnValues.Running;
     private ReturnValues m_GetWaterState = ReturnValues.Running;
-    private ReturnValues m_MakeBreadState = ReturnValues.Running;
+    private ReturnValues m_BakeBreadDoughState = ReturnValues.Running;
+    private ReturnValues m_MakeBreadDoughState = ReturnValues.Running;
     private ReturnValues m_ArrivedAtBakery = ReturnValues.Running;
 
     private void Awake()
@@ -42,15 +43,17 @@ public class BakerBehaviour : MonoBehaviour
         var getFlour = m_BT.CreateLeafNode("get flour", GetFlour, FlourAdquired);
         var getYeast = m_BT.CreateLeafNode("get yeast", GetYeast, YeastAdquired);
         var getWater = m_BT.CreateLeafNode("get water", GetWater, WaterAdquired);
-        var bakeBread = m_BT.CreateLeafNode("bake bread", BakeBread, BreadBaked);
+        var bakeBreadDough = m_BT.CreateLeafNode("bake bread dough", BakeBreadDough, BreadDoughBaked);
+        var makeBreadDough = m_BT.CreateLeafNode("make bread dough", MakeBreadDough, BreadDoughMade);
 
         hourSelector.AddChild(goToBakery);
         hourSelector.AddChild(makeBread);
 
+        makeBread.AddChild(bakeBreadDough);
         makeBread.AddChild(getFlour);
         makeBread.AddChild(getYeast);
         makeBread.AddChild(getWater);
-        makeBread.AddChild(bakeBread);
+        makeBread.AddChild(makeBreadDough);
 
         m_BT.SetRootNode(hourSelector);
     }
@@ -117,21 +120,39 @@ public class BakerBehaviour : MonoBehaviour
         }
     }
 
-    private void BakeBread()
+    private void BakeBreadDough()
     {
-        m_MakeBreadState = ReturnValues.Running;
+        m_BakeBreadDoughState = ReturnValues.Running;
 
         var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
-        if (!a.HasItem(ItemID.YEAST, out _) || !a.HasItem(ItemID.WATER, out _) || !a.HasItem(ItemID.FLOUR, out _))
+        if (!a.HasItem(ItemID.BREAD_DOUGH, out _))
         {
-            m_MakeBreadState = ReturnValues.Failed;
+            m_BakeBreadDoughState = ReturnValues.Failed;
         }
         else
         {
             m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.BREAD_OVEN).m_Pos, 1.0f);
             var h = m_Actions.TryInteractWith(WorkstationID.BREAD_OVEN);
-            h.OnCompletedEvent += () => m_MakeBreadState = ReturnValues.Succeed;
-            h.OnFailedEvent += () => m_MakeBreadState = ReturnValues.Failed;
+            h.OnCompletedEvent += () => m_BakeBreadDoughState = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_BakeBreadDoughState = ReturnValues.Failed;
+        }
+    }
+
+    private void MakeBreadDough()
+    {
+        m_MakeBreadDoughState = ReturnValues.Running;
+
+        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (!a.HasItem(ItemID.YEAST, out _) || !a.HasItem(ItemID.WATER, out _) || !a.HasItem(ItemID.FLOUR, out _))
+        {
+            m_MakeBreadDoughState = ReturnValues.Failed;
+        }
+        else
+        {
+            m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.DOUGH_TABLE).m_Pos, 1.0f);
+            var h = m_Actions.TryInteractWith(WorkstationID.DOUGH_TABLE);
+            h.OnCompletedEvent += () => m_MakeBreadDoughState = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_MakeBreadDoughState = ReturnValues.Failed;
         }
     }
 
@@ -152,6 +173,7 @@ public class BakerBehaviour : MonoBehaviour
     private ReturnValues FlourAdquired() => m_GetFlourState;
     private ReturnValues WaterAdquired() => m_GetWaterState;
     private ReturnValues YeastAdquired() => m_GetYeastState;
-    private ReturnValues BreadBaked() => m_MakeBreadState;
+    private ReturnValues BreadDoughBaked() => m_BakeBreadDoughState;
+    private ReturnValues BreadDoughMade() => m_MakeBreadDoughState;
     private ReturnValues ArrivedAtBakery() => m_ArrivedAtBakery;
 }

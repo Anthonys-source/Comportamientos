@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreadOvenWorkstation : MonoBehaviour
+public class DoughTableWorkstation : MonoBehaviour
 {
     [SerializeField] private float m_InteractionDuration = 1.5f;
     [SerializeField] private WorkstationProgressMeter m_Meter;
@@ -27,9 +27,11 @@ public class BreadOvenWorkstation : MonoBehaviour
     private void TryToInteract(ID interacterID)
     {
         InventoryComponent inv = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(interacterID);
-        if (inv.HasItem(ItemID.BREAD_DOUGH, out _))
+        if (inv.HasItem(ItemID.FLOUR, out _) && inv.HasItem(ItemID.WATER, out _) && inv.HasItem(ItemID.YEAST, out _))
         {
-            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = ItemID.BREAD_DOUGH });
+            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = ItemID.FLOUR });
+            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = ItemID.WATER });
+            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = ItemID.YEAST });
             StopAllCoroutines();
             StartCoroutine(WorkRoutine(interacterID));
         }
@@ -53,7 +55,7 @@ public class BreadOvenWorkstation : MonoBehaviour
             }
         }
 
-        m_AddItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = ItemID.BREAD });
+        m_AddItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = ItemID.BREAD_DOUGH });
         m_Interactable.CompleteInteraction(interacterID);
         m_Meter.HideMeter();
     }
