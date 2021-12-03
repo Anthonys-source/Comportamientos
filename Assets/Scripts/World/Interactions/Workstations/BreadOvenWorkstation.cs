@@ -27,10 +27,14 @@ public class BreadOvenWorkstation : MonoBehaviour
     private void TryToInteract(ID interacterID)
     {
         InventoryComponent inv = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(interacterID);
-        var i = inv.m_ItemsList.Find((i) => i.m_ItemID == ItemID.FLOUR);
-        if (i != null)
+        var flour = inv.m_ItemsList.Find((i) => i.m_ItemID == ItemID.FLOUR);
+        var water = inv.m_ItemsList.Find((i) => i.m_ItemID == ItemID.WATER);
+        var yeast = inv.m_ItemsList.Find((i) => i.m_ItemID == ItemID.YEAST);
+        if (flour != null && water != null && yeast != null)
         {
-            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = i.m_ItemID });
+            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = flour.m_ItemID });
+            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = water.m_ItemID });
+            m_RemoveItemEventChannel.Invoke(new InventoryItemEvtArgs { m_Amount = 1, m_InventoryID = interacterID, m_ItemID = yeast.m_ItemID });
             StopAllCoroutines();
             StartCoroutine(WorkRoutine(interacterID));
         }

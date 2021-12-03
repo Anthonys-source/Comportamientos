@@ -16,6 +16,8 @@ public class CharacterBlackboard : MonoBehaviour
 
     public List<ID> m_CharactersInRange = new List<ID>();
 
+    public ID m_CurrentZoneID;
+
     private InteractionsBehaviour _interactions;
     RaycastHit[] hits = new RaycastHit[10];
     private float updateTime = 0.0f;
@@ -35,6 +37,7 @@ public class CharacterBlackboard : MonoBehaviour
     {
         UpdateItemsInInteractionRange();
         UpdateItemsInVisionRange();
+
         OnInitialized?.Invoke();
     }
 
@@ -46,6 +49,7 @@ public class CharacterBlackboard : MonoBehaviour
         {
             UpdateItemsInInteractionRange();
             UpdateItemsInVisionRange();
+            UpdateCurrentZone();
             updateTime = 0.0f;
         }
     }
@@ -70,6 +74,15 @@ public class CharacterBlackboard : MonoBehaviour
         m_ItemsInRange.Clear();
         for (int i = 0; i < itm.Count; i++)
             m_ItemsInRange.Add(itm[i].m_EntityID.GetTypeID());
+    }
+
+    private void UpdateCurrentZone()
+    {
+        RaycastHit[] hits = new RaycastHit[25];
+        hits = Physics.SphereCastAll(transform.position, 10.0f, new Vector3(0.1f, 0.1f, 0.1f));
+        for (int i = 0; i < hits.Length; i++)
+            if (hits[i].collider.TryGetComponent(out BuildingZone zone))
+                m_CurrentZoneID = zone.GetZoneID();
     }
 }
 

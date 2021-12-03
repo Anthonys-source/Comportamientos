@@ -11,7 +11,9 @@ public class BakerBehaviour : MonoBehaviour
 
     private BehaviourTreeEngine m_BT;
 
-    private ReturnValues m_GetIngredientsState = ReturnValues.Running;
+    private ReturnValues m_GetFlourState = ReturnValues.Running;
+    private ReturnValues m_GetYeastState = ReturnValues.Running;
+    private ReturnValues m_GetWaterState = ReturnValues.Running;
     private ReturnValues m_MakeBreadState = ReturnValues.Running;
     private ReturnValues m_ArrivedAtBakery = ReturnValues.Running;
 
@@ -37,13 +39,17 @@ public class BakerBehaviour : MonoBehaviour
         var goToBakery = m_BT.CreateLeafNode("go to bakery", GoToBakery, ArrivedAtBakery);
 
         var makeBread = m_BT.CreateSequenceNode("make bread", false);
-        var getIngredients = m_BT.CreateLeafNode("get ingredients", GetIngredients, IngredientsAdquired);
+        var getFlour = m_BT.CreateLeafNode("get flour", GetFlour, FlourAdquired);
+        var getYeast = m_BT.CreateLeafNode("get yeast", GetYeast, YeastAdquired);
+        var getWater = m_BT.CreateLeafNode("get water", GetWater, WaterAdquired);
         var bakeBread = m_BT.CreateLeafNode("bake bread", BakeBread, BreadBaked);
 
         hourSelector.AddChild(goToBakery);
         hourSelector.AddChild(makeBread);
 
-        makeBread.AddChild(getIngredients);
+        makeBread.AddChild(getFlour);
+        makeBread.AddChild(getYeast);
+        makeBread.AddChild(getWater);
         makeBread.AddChild(bakeBread);
 
         m_BT.SetRootNode(hourSelector);
@@ -54,15 +60,37 @@ public class BakerBehaviour : MonoBehaviour
         m_BT.Update();
     }
 
-    private void GetIngredients()
+    private void GetFlour()
     {
-        m_GetIngredientsState = ReturnValues.Running;
+        m_GetFlourState = ReturnValues.Running;
 
         m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.FLOUR).m_Pos, 1.0f);
         var h = m_Actions.TryInteractWith(ItemID.FLOUR);
 
-        h.OnFailedEvent += () => m_GetIngredientsState = ReturnValues.Failed;
-        h.OnCompletedEvent += () => m_GetIngredientsState = ReturnValues.Succeed;
+        h.OnFailedEvent += () => m_GetFlourState = ReturnValues.Failed;
+        h.OnCompletedEvent += () => m_GetFlourState = ReturnValues.Succeed;
+    }
+
+    private void GetWater()
+    {
+        m_GetWaterState = ReturnValues.Running;
+
+        m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.WATER).m_Pos, 1.0f);
+        var h = m_Actions.TryInteractWith(ItemID.WATER);
+
+        h.OnFailedEvent += () => m_GetWaterState = ReturnValues.Failed;
+        h.OnCompletedEvent += () => m_GetWaterState = ReturnValues.Succeed;
+    }
+
+    private void GetYeast()
+    {
+        m_GetYeastState = ReturnValues.Running;
+
+        m_Actions.MoveTo(m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.YEAST).m_Pos, 1.0f);
+        var h = m_Actions.TryInteractWith(ItemID.YEAST);
+
+        h.OnFailedEvent += () => m_GetYeastState = ReturnValues.Failed;
+        h.OnCompletedEvent += () => m_GetYeastState = ReturnValues.Succeed;
     }
 
     private void BakeBread()
@@ -78,29 +106,19 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_ArrivedAtBakery = ReturnValues.Running;
 
-        var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY), 1.0f);
-
-        // Check if already at bakery
-        var ve = (transform.position - m_Waypoints.GetWaypointPosition(WaypointID.BAKERY));
-        ve.y = 0.0f;
-        if (ve.magnitude < 0.5f)
+        if (m_Blackboard.m_CurrentZoneID == ZoneID.BAKERY)
             m_ArrivedAtBakery = ReturnValues.Failed;
         else
+        {
+            var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY), 1.0f);
             h.OnCompletedEvent += () => m_ArrivedAtBakery = ReturnValues.Succeed;
+        }
     }
 
-    private ReturnValues IngredientsAdquired()
-    {
-        return m_GetIngredientsState;
-    }
 
-    private ReturnValues BreadBaked()
-    {
-        return m_MakeBreadState;
-    }
-
-    private ReturnValues ArrivedAtBakery()
-    {
-        return m_ArrivedAtBakery;
-    }
+    private ReturnValues FlourAdquired() => m_GetFlourState;
+    private ReturnValues WaterAdquired() => m_GetWaterState;
+    private ReturnValues YeastAdquired() => m_GetYeastState;
+    private ReturnValues BreadBaked() => m_MakeBreadState;
+    private ReturnValues ArrivedAtBakery() => m_ArrivedAtBakery;
 }
