@@ -31,11 +31,12 @@ public class CharacterActions : MonoBehaviour
     }
 
 
-    public void MoveTo(Vector3 pos, float speedPercentage)
+    public MoveAction MoveTo(Vector3 pos, float speedPercentage)
     {
         var action = new MoveAction(); // Big GC
         action.Initialize(_entity, _navmeshAgent, pos, speedPercentage);
         m_ActionsScheduler.AddAction(action);
+        return action;
     }
 
     public TryInteractAction TryInteractWith(ID interactableID)
@@ -85,7 +86,10 @@ public class ActionsScheduler
     private void RemoveCurrentAction()
     {
         if (m_CurrentAction != null)
-            m_CurrentAction.OnFinishEvent -= RemoveCurrentAction;
+        {
+            m_CurrentAction.OnCompletedEvent -= RemoveCurrentAction;
+            m_CurrentAction.OnFailedEvent -= RemoveCurrentAction;
+        }
         m_Actions.Dequeue();
         m_CurrentAction = null;
         m_InProgress = false;
@@ -98,7 +102,8 @@ public class ActionsScheduler
         {
             m_InProgress = true;
             m_CurrentAction = m_Actions.Peek();
-            m_CurrentAction.OnFinishEvent += RemoveCurrentAction;
+            m_CurrentAction.OnCompletedEvent += RemoveCurrentAction;
+            m_CurrentAction.OnFailedEvent += RemoveCurrentAction;
             m_CurrentAction.Start();
         }
         if (m_CurrentAction != null)

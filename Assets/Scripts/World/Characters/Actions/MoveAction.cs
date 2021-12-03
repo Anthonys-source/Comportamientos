@@ -34,7 +34,7 @@ public class MoveAction : CharacterAction
     {
         Vector3 planarVec = (_navmeshAgent.transform.position - _navmeshAgent.destination);
         planarVec.y = 0;
-        if (planarVec.magnitude < 0.05f)
+        if (planarVec.magnitude < 0.5f)
             Finish();
     }
 }

@@ -23,11 +23,11 @@ public class CharacterSimplePickupBehaviour : MonoBehaviour
 
     private void NextBehaviour()
     {
-        var items = _blackboard.m_ItemsInVisionRange;
+        var items = _blackboard.m_ItemsInVision;
         if (items.Count > 0)
         {
             _actions.MoveTo(items[0].m_Pos, 1.0f);
-            _actions.TryInteractWith(items[0].m_ID).OnFinishEvent += NextBehaviour;
+            _actions.TryInteractWith(items[0].m_ID).OnCompletedEvent += NextBehaviour;
         }
     }
 }

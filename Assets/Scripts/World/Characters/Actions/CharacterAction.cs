@@ -4,13 +4,17 @@ public abstract class CharacterAction
 {
     public event Action OnStartEvent;
     public event Action OnCanceledEvent;
-    public event Action OnFinishEvent;
+    public event Action OnCompletedEvent;
+    public event Action OnFailedEvent;
+
+    public ActionState State;
 
 
     public void Start()
     {
         OnStart();
         OnStartEvent?.Invoke();
+        State = ActionState.Running;
     }
 
     public void Update(float deltaTime)
@@ -22,11 +26,19 @@ public abstract class CharacterAction
     {
         OnCalceled();
         OnCanceledEvent?.Invoke();
+        State = ActionState.Canceled;
     }
 
     protected void Finish()
     {
-        OnFinishEvent?.Invoke();
+        OnCompletedEvent?.Invoke();
+        State = ActionState.Completed;
+    }
+
+    protected void Fail()
+    {
+        OnFailedEvent?.Invoke();
+        State = ActionState.Failed;
     }
 
     protected abstract void OnStart();
@@ -34,4 +46,12 @@ public abstract class CharacterAction
     protected abstract void OnUpdate(float deltaTime);
 
     protected abstract void OnCalceled();
+}
+
+public enum ActionState
+{
+    Running,
+    Completed,
+    Canceled,
+    Failed
 }

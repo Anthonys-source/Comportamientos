@@ -8,8 +8,11 @@ public class CharacterBlackboard : MonoBehaviour
 {
     public event Action OnInitialized;
 
-    public List<ItemBlackboard> m_ItemsInVisionRange = new List<ItemBlackboard>();
-    public List<ID> m_ItemsInInteractionRange = new List<ID>();
+    public List<ItemBlackboard> m_ItemsInVision = new List<ItemBlackboard>();
+    public List<ID> m_ItemsInRange = new List<ID>();
+
+    public List<ItemBlackboard> m_WorkstationsInVision = new List<ItemBlackboard>();
+    public List<ID> m_WorkstationsInRange = new List<ID>();
 
     public List<ID> m_CharactersInRange = new List<ID>();
 
@@ -49,21 +52,24 @@ public class CharacterBlackboard : MonoBehaviour
 
     private void UpdateItemsInVisionRange()
     {
-        m_ItemsInVisionRange.Clear();
-        hits = Physics.SphereCastAll(transform.position, 10.0f, new Vector3(0.1f, 0.1f, 0.1f));
+        m_ItemsInVision.Clear();
+        m_WorkstationsInVision.Clear();
+        hits = Physics.SphereCastAll(transform.position, 20.0f, new Vector3(0.1f, 0.1f, 0.1f));
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].collider.TryGetComponent(out PickupItem item))
-                m_ItemsInVisionRange.Add(new ItemBlackboard(item.entityID.GetTypeID(), item.transform.position));
+                m_ItemsInVision.Add(new ItemBlackboard(item.entityID.GetTypeID(), item.transform.position));
+            else if (hits[i].collider.TryGetComponent(out WorkstationTag workstation))
+                m_WorkstationsInVision.Add(new ItemBlackboard(workstation.GetComponent<EntityID>().GetTypeID(), workstation.transform.position)); // Janky
         }
     }
 
     private void UpdateItemsInInteractionRange()
     {
         var itm = _interactions.GetInteractablesInRange();
-        m_ItemsInInteractionRange.Clear();
+        m_ItemsInRange.Clear();
         for (int i = 0; i < itm.Count; i++)
-            m_ItemsInInteractionRange.Add(itm[i].m_EntityID.GetTypeID());
+            m_ItemsInRange.Add(itm[i].m_EntityID.GetTypeID());
     }
 }
 
