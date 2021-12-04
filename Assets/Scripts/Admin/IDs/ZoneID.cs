@@ -2,4 +2,5 @@
 {
     public static readonly ID BAKERY = new ID("bakery");
     public static readonly ID CITY_STREETS = new ID("city_streets");
+    public static readonly ID FACTORY = new ID("factory");
 }

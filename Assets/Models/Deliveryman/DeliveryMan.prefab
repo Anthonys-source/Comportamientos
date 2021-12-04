@@ -12,6 +12,14 @@ GameObject:
   - component: {fileID: 4108055902101961595}
   - component: {fileID: 269066346354744200}
   - component: {fileID: 4011112785844863102}
+  - component: {fileID: 1138473148}
+  - component: {fileID: 1138473147}
+  - component: {fileID: 1138473146}
+  - component: {fileID: 1138473145}
+  - component: {fileID: 1138473144}
+  - component: {fileID: 1138473150}
+  - component: {fileID: 1138473149}
+  - component: {fileID: 6687715590813585807}
   m_Layer: 0
   m_Name: DeliveryMan
   m_TagString: Untagged
@@ -31,6 +39,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1295453282508209892}
+  - {fileID: 8007487735116718425}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,6 +106,189 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &1138473148
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1138473147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1498e383ce7bdcb4f8d0904083071d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerCallbacksRef: {fileID: 1870583854146909253}
+--- !u!114 &1138473146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e0675cd75bc714ca6a00256cc6484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InstanceID: deliveryman_1
+  TypeID: deliveryman
+--- !u!114 &1138473145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd237424fa0d4114eb2e5e2098973b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CharComponent:
+    m_ID:
+      m_NameID: 
+      m_ID: 0
+      m_Initialized: 0
+    m_WalkingSpeed: 0
+    m_Position: {x: 0, y: 0, z: 0}
+  m_MoodComponent:
+    m_ID:
+      m_NameID: 
+      m_ID: 0
+      m_Initialized: 0
+    m_MoodValue: 0
+  m_InventoryComponent:
+    m_ID:
+      m_NameID: 
+      m_ID: 0
+      m_Initialized: 0
+    m_ItemsList: []
+--- !u!114 &1138473144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dc6db30cc93874e89272fdf67e7b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ActionsScheduler:
+    m_InProgress: 0
+--- !u!114 &1138473150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58b7f106c0f7d845b2524c6e9e934cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemsInRange: []
+  m_WorkstationsInRange: []
+  m_CharactersInRange: []
+  m_CurrentZoneID:
+    m_NameID: 
+    m_ID: 0
+    m_Initialized: 0
+--- !u!114 &1138473149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c974e6ae78d5b874f97f489ae17acccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Waypoints:
+  - m_IDName: factory
+    m_Transform: {fileID: 0}
+--- !u!114 &6687715590813585807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193256877861376465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c14b5d993be4114fad20eafef433115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3702424391352963846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8007487735116718425}
+  - component: {fileID: 1870583854146909253}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8007487735116718425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702424391352963846}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 86.04904, y: -0.9772918, z: 118.93756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5945168247999100603}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870583854146909253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702424391352963846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3cff43801b0d940b9b510552302762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1617045810657007887
 PrefabInstance:
   m_ObjectHideFlags: 0

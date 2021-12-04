@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<XMLElement xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>1c74918b-0348-4741-a1a1-3c872aaaebe4</Id>
+  <elemType>FSM</elemType>
+  <secondType />
+  <thirdType />
+  <fourthType />
+  <name>Repartidor</name>
+  <windowPosX>380</windowPosX>
+  <windowPosY>209</windowPosY>
+  <nodes>
+    <XMLElement>
+      <Id>746d2acd-56af-43fc-b8a0-024538f19c93</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Entry</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Durmiendo</name>
+      <windowPosX>19</windowPosX>
+      <windowPosY>264</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>47c77dff-8b53-4169-a428-7b47a54efe81</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Camino a la fabrica</name>
+      <windowPosX>356</windowPosX>
+      <windowPosY>50</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>9cf5c82c-72d5-4fe3-a0b0-803a90ead47f</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Repartiendo</name>
+      <windowPosX>1152</windowPosX>
+      <windowPosY>30</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>0bd3cc16-1575-4ddb-8451-596473b0696f</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Comiendo y bebiendo</name>
+      <windowPosX>886</windowPosX>
+      <windowPosY>571</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>9601bb8f-f8fe-4ef0-8b65-e6adaae7c94e</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Redes Sociales</name>
+      <windowPosX>280</windowPosX>
+      <windowPosY>507</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </nodes>
+  <transitions>
+    <XMLElement>
+      <Id>0ffa5870-c544-457f-adfb-13bca5604aae</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A la fabrica</name>
+      <windowPosX>182.5</windowPosX>
+      <windowPosY>173.5</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>746d2acd-56af-43fc-b8a0-024538f19c93</fromId>
+      <toId>47c77dff-8b53-4169-a428-7b47a54efe81</toId>
+      <perception>
+        <Id>d5fa2775-7ba0-4d70-903a-d42a0ee9479c</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+        <firstChild>
+          <Id>678a4ffb-251e-453e-89e5-8ed4dd5278cb</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>3dff8ac6-baf8-48d3-ad3a-944ff1ddbe24</Id>
+          <type>Custom</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>Moviendo</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>d8017be4-8113-4ba2-853d-b4c8ad118ff3</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A trabajar</name>
+      <windowPosX>749</windowPosX>
+      <windowPosY>56.5</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>47c77dff-8b53-4169-a428-7b47a54efe81</fromId>
+      <toId>9cf5c82c-72d5-4fe3-a0b0-803a90ead47f</toId>
+      <perception>
+        <Id>09816c51-b776-4e9b-a2b3-a3f38637ee69</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+        <firstChild>
+          <Id>0c9cc0e9-5334-4e1a-9662-039c214eb06b</Id>
+          <type>Custom</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>EstaEnFabrica</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>983dc950-3113-48e2-8a29-6008d90380f7</Id>
+          <type>Custom</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>EstaRepartiendo</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>aaf3e287-a04d-48d2-80bd-585e848ab38f</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A comer</name>
+      <windowPosX>1014</windowPosX>
+      <windowPosY>317</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>9cf5c82c-72d5-4fe3-a0b0-803a90ead47f</fromId>
+      <toId>0bd3cc16-1575-4ddb-8451-596473b0696f</toId>
+      <perception>
+        <Id>c3febf9c-d7a9-4fc1-9542-d1b7b11ee735</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+        <firstChild>
+          <Id>08e55c94-8e78-4e33-a094-78e2375f4438</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>51a947ff-ec4f-4c7b-966c-8cb0ae39f7e0</Id>
+          <type>And</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+          <firstChild>
+            <Id>d6336c32-88af-4d93-b969-33859109133b</Id>
+            <type>Custom</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>ComiendoYBebiendo</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+          </firstChild>
+          <secondChild>
+            <Id>27809f9d-2833-4ea4-83e4-98515b004db1</Id>
+            <type>Custom</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>EstaEnBar</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+          </secondChild>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>78d08fce-1b05-45a4-885b-5c0a6e79c22e</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A casa</name>
+      <windowPosX>578</windowPosX>
+      <windowPosY>555.5</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>0bd3cc16-1575-4ddb-8451-596473b0696f</fromId>
+      <toId>9601bb8f-f8fe-4ef0-8b65-e6adaae7c94e</toId>
+      <perception>
+        <Id>41a15fa6-f3fe-467e-bbe0-60af0bb63698</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+        <firstChild>
+          <Id>f01ae170-3045-4098-b0d6-b55521b4ca5d</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>55e4adc2-82a4-4eb1-979b-7f5fc8c9aba8</Id>
+          <type>And</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+          <firstChild>
+            <Id>ac4cdeb7-33de-4ce3-8ce3-a33c81ebfaec</Id>
+            <type>Custom</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>EnRedesSociales</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </firstChild>
+          <secondChild>
+            <Id>b71007a3-f391-4c2a-ae13-b6d278f1a00b</Id>
+            <type>Custom</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>EstaEnCasa</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+          </secondChild>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>773d5abb-2ac6-47b5-8d61-d3d1dc9ece66</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A dormir</name>
+      <windowPosX>144.5</windowPosX>
+      <windowPosY>402</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>9601bb8f-f8fe-4ef0-8b65-e6adaae7c94e</fromId>
+      <toId>746d2acd-56af-43fc-b8a0-024538f19c93</toId>
+      <perception>
+        <Id>f725f85b-fd22-4469-86d2-d5ddb0f013f1</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+        <firstChild>
+          <Id>551c05a1-963f-45ef-a63f-ffac3ab0c272</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>a1ec04b5-e3d0-4f32-b293-b32c829ea606</Id>
+          <type>Custom</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>Durmiendo</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </transitions>
+  <isRandom>false</isRandom>
+  <isInfinite>false</isInfinite>
+  <delayTime>0</delayTime>
+  <Nloops>0</Nloops>
+  <index>0</index>
+  <variableMin>0</variableMin>
+  <variableMax>0</variableMax>
+  <slope>0</slope>
+  <exp>0</exp>
+  <displX>0</displX>
+  <displY>0</displY>
+  <weight>0</weight>
+  <isExit>false</isExit>
+</XMLElement>
