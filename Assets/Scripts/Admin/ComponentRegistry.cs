@@ -22,6 +22,7 @@ public class ComponentRegistry : Singleton<ComponentRegistry>
 
 
     [SerializeField] private BakersComponent m_BakersComponent = new BakersComponent();
+    [SerializeField] private DayNightCycleComponent m_DayNightCycleComponent = new DayNightCycleComponent();
 
     public void Initialize()
     {
@@ -38,6 +39,7 @@ public class ComponentRegistry : Singleton<ComponentRegistry>
         m_Components.Add(typeof(BuildingZoneComponent), m_BuildingZoneComponent);
 
         m_SingletonComponents.Add(typeof(BakersComponent), m_BakersComponent);
+        m_SingletonComponents.Add(typeof(DayNightCycleComponent), m_DayNightCycleComponent);
     }
 
     public ComponentsContainer<T> GetComponentsContainer<T>() where T : class

@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class Singleton_DayNightCycleComponent
+public class DayNightCycleComponent
 {
     public int m_Day;
     public int m_Hour;
