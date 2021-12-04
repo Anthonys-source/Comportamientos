@@ -157,7 +157,7 @@ public class Repartidor : MonoBehaviour {
             inFactory = false;
         else
         {
-            var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY), 1.0f);
+            var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.FACTORY), 1.0f);
             h.OnCompletedEvent += () => inFactory = true;
         }
     }
