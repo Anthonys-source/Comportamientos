@@ -4,4 +4,5 @@
     public static readonly ID FLOUR = new ID("flour");
     public static readonly ID YEAST = new ID("yeast");
     public static readonly ID WATER = new ID("water");
+    public static readonly ID BREAD_DOUGH = new ID("bread_dough");
 }
