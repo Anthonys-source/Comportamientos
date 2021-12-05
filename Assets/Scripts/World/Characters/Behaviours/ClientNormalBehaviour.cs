@@ -11,6 +11,7 @@ public class ClientNormalBehaviour : MonoBehaviour
     private StateMachineEngine m_SM;
 
     private Vector3 bakeryPosition;
+    private DayNightCycleComponent dayCicle;
 
     private void Awake()
     {
@@ -26,7 +27,9 @@ public class ClientNormalBehaviour : MonoBehaviour
         // Init State Machine
         CreateStateMachine();
 
-        bakeryPosition = m_Waypoints.GetWaypointPosition(new ID("bakeryTest"));
+        bakeryPosition = m_Waypoints.GetWaypointPosition(new ID("bakery"));
+
+        dayCicle = ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>();
     }
 
     private void Update()
@@ -49,11 +52,12 @@ public class ClientNormalBehaviour : MonoBehaviour
         Perception arriveAtBakery = m_SM.CreatePerception<ValuePerception>(CheckArrivedAtBakery);
 
         m_SM.CreateTransition("house to bakery", house, itsBakeryHour, houseToBakery);
-        m_SM.CreateTransition("bakery to house", houseToBakery, arriveAtBakery, bakery);
+        m_SM.CreateTransition("bakery", houseToBakery, arriveAtBakery, bakery);
     }
 
     private bool CheckTimeToBakery()
     {
+        //int hour = dayCicle.m_Hour;
         int hour = ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Hour;
         return hour >= 9 && hour <= 15;
     }
@@ -65,6 +69,6 @@ public class ClientNormalBehaviour : MonoBehaviour
 
     private void MoveToBakery()
     {
-        m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(new ID("bakeryTest")));
+        m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(new ID("bakery")));
     }
 }
