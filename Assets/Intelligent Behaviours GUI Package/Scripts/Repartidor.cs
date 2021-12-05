@@ -146,13 +146,13 @@ public class Repartidor : MonoBehaviour {
         }else if(!EstaRepartiendoPerception.Check(this.gameObject) && EstaEnFabricaPerception.Check(this.gameObject))
         {
             Repartidor_FSM.Fire("A trabajar");
-        }else if(!ComiendoYBebiendoPerception.Check(this.gameObject) && !EstaEnBarPerception.Check(this.gameObject))
+        }else if(!ComiendoYBebiendoPerception.Check(this.gameObject) && !EstaEnBarPerception.Check(this.gameObject) && ((ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Hour == 12)))
         {
             Repartidor_FSM.Fire("A comer");
-        }else if(!EnRedesSocialesPerception.Check(this.gameObject) && !EstaEnCasaPerception.Check(this.gameObject))
+        }else if(!EnRedesSocialesPerception.Check(this.gameObject) && !EstaEnCasaPerception.Check(this.gameObject) && ((ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Hour == 19)))
         {
             Repartidor_FSM.Fire("A casa");
-        }else if (!DurmiendoPerception.Check(this.gameObject))
+        }else if (!DurmiendoPerception.Check(this.gameObject) && ((ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Hour == 21)))
         {
             Repartidor_FSM.Fire("A dormir");
         }
