@@ -27,7 +27,6 @@ public class Singleton_Bakery_Queue: MonoBehaviour
     [SerializeField] private List<GameObject> charactersInQueue = new List<GameObject>();
     [SerializeField] private Transform initialPos;
     [SerializeField] private Vector3 queueOffset;
-    [SerializeField] private GameObject characterAtCounter;
 
     public int maxSize = 2;
 
@@ -42,10 +41,7 @@ public class Singleton_Bakery_Queue: MonoBehaviour
         if (charactersInQueue.Count == 0)
             actions.MoveTo(initialPos.position);
         else
-        {
-            actions.MoveTo(initialPos.position + (queueOffset * charactersInQueue.Count));
-            Debug.Log("Last character pos: " + charactersInQueue[charactersInQueue.Count - 1].transform.position);
-        }
+            actions.MoveTo(charactersInQueue[charactersInQueue.Count - 1].transform.position + queueOffset);
 
         charactersInQueue.Add(newObj);
 
@@ -57,52 +53,11 @@ public class Singleton_Bakery_Queue: MonoBehaviour
         return charactersInQueue.Count < maxSize;
     }
 
-    public bool CanExitQueue(GameObject obj)
-    {
-        if (charactersInQueue.Count > 0 && charactersInQueue[0] == obj && characterAtCounter == null)
-        {
-            characterAtCounter = obj;
-            return true;
-        }
-        else
-            return false;
-    }
-
-    /*
-    public bool SomeoneAtCounter(GameObject obj)
-    {
-        if(characterAtCounter != null)
-        {
-            if (EnterQueue(obj))
-            {
-                return true;
-            }
-            
-        }
-        else
-        {
-            characterAtCounter = obj;
-            return false;
-        }
-        
-    }
-    */
-
     public void AdvanceQueue()
     {
         foreach(GameObject obj in charactersInQueue)
         {
             obj.GetComponent<CharacterActions>().MoveTo(obj.transform.position + queueOffset);
-        }
-    }
-
-    public void ExitQueue()
-    {
-        if(charactersInQueue.Count > 0)
-        {
-
-            charactersInQueue.RemoveAt(0);
-            AdvanceQueue();
         }
     }
 }

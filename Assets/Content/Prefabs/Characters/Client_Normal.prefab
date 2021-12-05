@@ -88,7 +88,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6701295130019207318}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -42.11329, y: 1.7749114, z: -188.40419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -224,10 +224,6 @@ MonoBehaviour:
   - m_IDName: initialPos
     m_Transform: {fileID: 0}
   - m_IDName: bakery
-    m_Transform: {fileID: 0}
-  - m_IDName: counter
-    m_Transform: {fileID: 0}
-  - m_IDName: home
     m_Transform: {fileID: 0}
 --- !u!114 &4862903593517718578
 MonoBehaviour:
