@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5660230269786740545}
   - component: {fileID: 1987854104}
   - component: {fileID: 3569755544047929776}
-  - component: {fileID: 1677877153}
   m_Layer: 0
   m_Name: Admin
   m_TagString: Untagged
@@ -56,10 +55,17 @@ MonoBehaviour:
       m_ComponentsList: []
     m_BreadBakerComponent:
       m_ComponentsList: []
-    m_ItemComponent:
+    m_ItemTypeComponent:
       m_ComponentsList: []
     m_ItemWorldComponent:
       m_ComponentsList: []
+    m_BuildingZoneComponent:
+      m_ComponentsList: []
+    m_DayNightCycleComponent:
+      m_Day: 0
+      m_Hour: 0
+      m_Minute: 0
+      m_Second: 0
 --- !u!114 &1987854104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,20 +94,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17f63e73a387f34c9ff2dcd9fc297c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1677877153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5660230269786740547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ed6e57c02d45d47bf5b2e6f2364041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dayNightCycleComponent:
-    m_Day: 0
-    m_Hour: 0
-    m_Minute: 0
-    m_Second: 0

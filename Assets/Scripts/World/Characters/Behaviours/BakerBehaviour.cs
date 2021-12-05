@@ -9,7 +9,8 @@ public class BakerBehaviour : MonoBehaviour
     private CharacterBlackboard m_Blackboard;
     private CharacterWaypoints m_Waypoints;
 
-    private BehaviourTreeEngine m_BT;
+    private StateMachineEngine m_SM;
+    private BehaviourTreeEngine m_BakeryBT;
 
     private ReturnValues m_GetFlourState = ReturnValues.Running;
     private ReturnValues m_GetYeastState = ReturnValues.Running;
@@ -29,25 +30,21 @@ public class BakerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        // Init State Machine / Behaviour Tree
-        var evtSys = EventSystem.GetInst().GetGlobal();
+        m_BakeryBT = new BehaviourTreeEngine(true);
+        var root = m_BakeryBT.CreateSelectorNode("root");
+        m_BakeryBT.CreateLoopNode("b", root);
+        var goToBakery = m_BakeryBT.CreateLeafNode("go to bakery", GoToBakery, ArrivedAtBakery);
 
-        m_BT = new BehaviourTreeEngine(false);
+        var makeBread = m_BakeryBT.CreateSelectorNode("make bread");
 
-        var hourSelector = m_BT.CreateSelectorNode("hour selector");
-        m_BT.CreateLoopNode("b", hourSelector);
+        var getFlour = m_BakeryBT.CreateLeafNode("get flour", GetFlour, FlourAdquired);
+        var getYeast = m_BakeryBT.CreateLeafNode("get yeast", GetYeast, YeastAdquired);
+        var getWater = m_BakeryBT.CreateLeafNode("get water", GetWater, WaterAdquired);
+        var bakeBreadDough = m_BakeryBT.CreateLeafNode("bake bread dough", BakeBreadDough, BreadDoughBaked);
+        var makeBreadDough = m_BakeryBT.CreateLeafNode("make bread dough", MakeBreadDough, BreadDoughMade);
 
-        var goToBakery = m_BT.CreateLeafNode("go to bakery", GoToBakery, ArrivedAtBakery);
-
-        var makeBread = m_BT.CreateSelectorNode("make bread");
-        var getFlour = m_BT.CreateLeafNode("get flour", GetFlour, FlourAdquired);
-        var getYeast = m_BT.CreateLeafNode("get yeast", GetYeast, YeastAdquired);
-        var getWater = m_BT.CreateLeafNode("get water", GetWater, WaterAdquired);
-        var bakeBreadDough = m_BT.CreateLeafNode("bake bread dough", BakeBreadDough, BreadDoughBaked);
-        var makeBreadDough = m_BT.CreateLeafNode("make bread dough", MakeBreadDough, BreadDoughMade);
-
-        hourSelector.AddChild(goToBakery);
-        hourSelector.AddChild(makeBread);
+        root.AddChild(goToBakery);
+        root.AddChild(makeBread);
 
         makeBread.AddChild(bakeBreadDough);
         makeBread.AddChild(getFlour);
@@ -55,12 +52,24 @@ public class BakerBehaviour : MonoBehaviour
         makeBread.AddChild(getWater);
         makeBread.AddChild(makeBreadDough);
 
-        m_BT.SetRootNode(hourSelector);
+        m_BakeryBT.SetRootNode(root);
+
+
+
+        m_SM = new StateMachineEngine(false);
+
+        State house = m_SM.CreateEntryState("atHouse", () => Debug.Log("Idle"));
+        State bakery = m_SM.CreateSubStateMachine("atBakery", m_BakeryBT);
+        var itsBakeryHour = m_SM.CreatePerception<ValuePerception>(() => { return ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day >= 2; });
+        var itsHomeHour = m_SM.CreatePerception<ValuePerception>(() => { return ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day < 2; });
+        m_SM.CreateTransition("house to bakery", house, itsBakeryHour, bakery);
+        m_SM.CreateTransition("bakery to house", bakery, itsHomeHour, house);
     }
 
     private void Update()
     {
-        m_BT.Update();
+        m_SM.Update();
+        m_BakeryBT.Update();
     }
 
     private void GetFlour()
