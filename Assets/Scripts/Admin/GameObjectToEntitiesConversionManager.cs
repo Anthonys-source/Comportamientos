@@ -19,12 +19,17 @@ public class GameObjectToEntitiesConversionManager : MonoBehaviour
         for (int i = 0; i < m_CharacterEntities.Count; i++)
         {
             var c = m_CharacterEntities[i];
+            var typeCont = reg.GetComponentsContainer<EntityTypeComponent>();
             var moodCont = reg.GetComponentsContainer<MoodComponent>();
             var charCont = reg.GetComponentsContainer<CharacterComponent>();
             var invCont = reg.GetComponentsContainer<InventoryComponent>();
             var bakers = reg.GetSingletonComponent<BakersComponent>();
 
             ID instanceID = c.GetComponent<EntityID>().GetInstID();
+
+            EntityTypeComponent typeComp = new EntityTypeComponent();
+            typeComp.m_ID = instanceID;
+            typeComp.m_TypeID = c.GetComponent<EntityID>().GetTypeID();
 
             MoodComponent moodComp = new MoodComponent();
             moodComp.m_ID = instanceID;
@@ -36,6 +41,7 @@ public class GameObjectToEntitiesConversionManager : MonoBehaviour
             moodCont.Add(instanceID, moodComp);
             charCont.Add(instanceID, charComp);
             invCont.Add(instanceID, invComp);
+            typeCont.Add(instanceID, typeComp);
             bakers.m_AllBakersList.Add(instanceID);
         }
 

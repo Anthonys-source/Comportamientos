@@ -74,7 +74,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1103446620787481113
 Transform:
@@ -169,7 +169,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7001125315018328132
 Transform:
@@ -435,6 +435,8 @@ MonoBehaviour:
   m_Waypoints:
   - m_IDName: bakery
     m_Transform: {fileID: 0}
+  - m_IDName: home
+    m_Transform: {fileID: 0}
 --- !u!114 &5851070011298601513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +456,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7001125315308428632}
     m_Modifications:
+    - target: {fileID: 7448762136635312717, guid: cf028b5df7e81434b8fa0b909dd0a02c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7448762137016370400, guid: cf028b5df7e81434b8fa0b909dd0a02c, type: 3}
       propertyPath: m_EntityID
       value: 
@@ -505,6 +511,10 @@ PrefabInstance:
     - target: {fileID: 7448762137016370402, guid: cf028b5df7e81434b8fa0b909dd0a02c, type: 3}
       propertyPath: m_Name
       value: MoodMeter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448762137724070956, guid: cf028b5df7e81434b8fa0b909dd0a02c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf028b5df7e81434b8fa0b909dd0a02c, type: 3}

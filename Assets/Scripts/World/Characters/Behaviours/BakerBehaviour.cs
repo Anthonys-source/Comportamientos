@@ -12,6 +12,7 @@ public class BakerBehaviour : MonoBehaviour
     private StateMachineEngine m_SM;
     private BehaviourTreeEngine m_BakeryBT;
 
+    private ReturnValues m_BreadSold = ReturnValues.Running;
     private ReturnValues m_GetFlourState = ReturnValues.Running;
     private ReturnValues m_GetYeastState = ReturnValues.Running;
     private ReturnValues m_GetWaterState = ReturnValues.Running;
@@ -35,16 +36,22 @@ public class BakerBehaviour : MonoBehaviour
         m_BakeryBT.CreateLoopNode("b", root);
         var goToBakery = m_BakeryBT.CreateLeafNode("go to bakery", GoToBakery, ArrivedAtBakery);
 
-        var makeBread = m_BakeryBT.CreateSelectorNode("make bread");
+        var sellToClient = m_BakeryBT.CreateSelectorNode("sell to client");
+        var sellBread = m_BakeryBT.CreateLeafNode("sell bread", SellBread, BreadSold);
 
+        var makeBread = m_BakeryBT.CreateSelectorNode("make bread");
         var getFlour = m_BakeryBT.CreateLeafNode("get flour", GetFlour, FlourAdquired);
         var getYeast = m_BakeryBT.CreateLeafNode("get yeast", GetYeast, YeastAdquired);
         var getWater = m_BakeryBT.CreateLeafNode("get water", GetWater, WaterAdquired);
         var bakeBreadDough = m_BakeryBT.CreateLeafNode("bake bread dough", BakeBreadDough, BreadDoughBaked);
         var makeBreadDough = m_BakeryBT.CreateLeafNode("make bread dough", MakeBreadDough, BreadDoughMade);
 
+
         root.AddChild(goToBakery);
+        root.AddChild(sellToClient);
         root.AddChild(makeBread);
+
+        sellToClient.AddChild(sellBread);
 
         makeBread.AddChild(bakeBreadDough);
         makeBread.AddChild(getFlour);
@@ -178,7 +185,25 @@ public class BakerBehaviour : MonoBehaviour
         }
     }
 
+    private void SellBread()
+    {
+        m_BreadSold = ReturnValues.Running;
 
+        var inv = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (!inv.HasItem(ItemID.BREAD, out _))
+        {
+            m_BreadSold = ReturnValues.Failed;
+        }
+        else
+        {
+            m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.DIALOGUE_STARTER).m_Pos, 1.0f);
+            var h = m_Actions.TryInteractWith(WorkstationID.DIALOGUE_STARTER);
+            h.OnCompletedEvent += () => m_BreadSold = ReturnValues.Succeed;
+            h.OnFailedEvent += () => m_BreadSold = ReturnValues.Failed;
+        }
+    }
+
+    private ReturnValues BreadSold() => m_BreadSold;
     private ReturnValues FlourAdquired() => m_GetFlourState;
     private ReturnValues WaterAdquired() => m_GetWaterState;
     private ReturnValues YeastAdquired() => m_GetYeastState;

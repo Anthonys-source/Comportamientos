@@ -9,6 +9,8 @@ public class ComponentRegistry : Singleton<ComponentRegistry>
     private Dictionary<Type, object> m_Components = new Dictionary<Type, object>();
     private Dictionary<Type, object> m_SingletonComponents = new Dictionary<Type, object>();
 
+    [SerializeField] private ComponentsContainer<EntityTypeComponent> m_EntityTypeComponent = new ComponentsContainer<EntityTypeComponent>();
+
     [SerializeField] private ComponentsContainer<CharacterComponent> m_CharacterComponents = new ComponentsContainer<CharacterComponent>();
     [SerializeField] private ComponentsContainer<MoodComponent> m_MoodComponents = new ComponentsContainer<MoodComponent>();
     [SerializeField] private ComponentsContainer<InventoryComponent> m_InventoryComponent = new ComponentsContainer<InventoryComponent>();
@@ -27,6 +29,8 @@ public class ComponentRegistry : Singleton<ComponentRegistry>
     public void Initialize()
     {
         s_Instance = this;
+        m_Components.Add(typeof(EntityTypeComponent), m_EntityTypeComponent);
+
         m_Components.Add(typeof(CharacterComponent), m_CharacterComponents);
         m_Components.Add(typeof(MoodComponent), m_MoodComponents);
         m_Components.Add(typeof(InventoryComponent), m_InventoryComponent);
