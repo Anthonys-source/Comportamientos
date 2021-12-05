@@ -140,7 +140,7 @@ public class Repartidor : MonoBehaviour {
         {
             Repartidor_FSM.Fire("A dormir");
         }*/
-        if (!MoviendoPerception.Check(this.gameObject) && ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day)
+        if (!MoviendoPerception.Check(this.gameObject) && (ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Hour == 6))
         {
             Repartidor_FSM.Fire("A la fabrica");
         }else if(!EstaRepartiendoPerception.Check(this.gameObject) && EstaEnFabricaPerception.Check(this.gameObject))
