@@ -18,15 +18,20 @@ public class DayNightCycleSystem : BaseSystem
         c.m_Second += timeStep;
         if (c.m_Second >= 60.0f)
         {
+            c.m_Second = 0.0f;
             c.m_Minute += 1;
-            if (c.m_Minute >= 60)
-            {
-                c.m_Hour += 1;
-                if (c.m_Hour >= 24)
-                {
-                    c.m_Day += 1;
-                }
-            }
+        }
+
+        if (c.m_Minute >= 60)
+        {
+            c.m_Minute = 0;
+            c.m_Hour += 1;
+        }
+
+        if (c.m_Hour >= 24)
+        {
+            c.m_Hour = 0;
+            c.m_Day += 1;
         }
     }
 }
