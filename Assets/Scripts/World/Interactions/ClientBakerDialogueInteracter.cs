@@ -34,7 +34,6 @@ public class ClientBakerDialogueInteracter : MonoBehaviour
         if (!m_BakerID.IsInitialized() && ent.m_TypeID == EntityType.BAKER)
         {
             m_BakerID = ent.m_ID;
-            m_ClientID = new ID("test");
             StopAllCoroutines(); // This is horrible but it works
             StartCoroutine(DialogateRoutine());
         }
