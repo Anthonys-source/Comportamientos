@@ -34,13 +34,13 @@ public class Kid : MonoBehaviour {
     private State Haciendodeberes;
 
     //Place your variables here
-    private bool isMoving;
-    private bool inClass;
-    private bool isEating;
-    private bool inCafeteria;
-    private bool inHouse;
-    private bool isDoingHomework;
-    private bool isSleeping;
+    [SerializeField] private bool isMoving;
+    [SerializeField] private bool inClass;
+    [SerializeField] private bool isEating;
+    [SerializeField] private bool inCafeteria;
+    [SerializeField] private bool inHouse;
+    [SerializeField] private bool isDoingHomework;
+    [SerializeField] private bool isSleeping;
 
     private CharacterActions m_Actions;
     private CharacterBlackboard m_Blackboard;
