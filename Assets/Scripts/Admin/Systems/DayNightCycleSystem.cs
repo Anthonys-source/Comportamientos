@@ -15,7 +15,7 @@ public class DayNightCycleSystem : BaseSystem
     public override void Update(float timeStep)
     {
         var c = _dayNightCycleComponent;
-        c.m_Second += timeStep;
+        c.m_Second += timeStep * c.m_TimeScale;
         if (c.m_Second >= 60.0f)
         {
             c.m_Second = 0.0f;
