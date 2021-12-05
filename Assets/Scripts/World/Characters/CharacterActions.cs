@@ -52,6 +52,14 @@ public class CharacterActions : MonoBehaviour
         return action;
     }
 
+    public TryInteractAction TryInteractWith2(ID interactableID)
+    {
+        var action = new TryInteractAction();
+        action.Initialize(_interactionsBehaviour, interactableID);
+        m_ActionsScheduler.SetAction(action);
+        return action;
+    }
+
     public void LookAt(Vector3 dir)
     {
         gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, dir);

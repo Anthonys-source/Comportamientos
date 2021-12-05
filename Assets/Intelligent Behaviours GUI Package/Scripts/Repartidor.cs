@@ -37,7 +37,7 @@ public class Repartidor : MonoBehaviour {
     
     //Place your variables here
     [SerializeField] private bool isMoving;
-    private bool isSleeping;
+    [SerializeField] private bool isSleeping;
     [SerializeField] private bool inFactory;
     [SerializeField] private bool inBar;
     [SerializeField] private bool inHouse;
@@ -163,21 +163,26 @@ public class Repartidor : MonoBehaviour {
     private void DurmiendoAction()
     {
         Debug.Log("Durmiendo");
+        isSleeping = true;
         Dormir();
     }
     
     private void CaminoalafabricaAction()
     {
-        //m_ArrivedAtBakery = ReturnValues.Running;
         Debug.Log("De camino al trabajo");
         isMoving = true;
+        inHouse = false;
+        isSleeping = false;
+        this.gameObject.SetActive(true);
         Moverse(ZoneID.FACTORY, WaypointID.FACTORY, 1);
     }
     
     private void RepartiendoAction()
     {
         Debug.Log("A repartir");
+        isMoving = false;
         isDelivering = true;
+        inFactory = false;
         transform.GetChild(2).gameObject.SetActive(true);
         Repartir();
     }
@@ -185,46 +190,55 @@ public class Repartidor : MonoBehaviour {
     private void ComiendoybebiendoAction()
     {
         Debug.Log("Rica comida");
+        isDelivering = false;
+        //isEating = false;
+        m_Actions.TryInteractWith2();
         transform.GetChild(2).gameObject.SetActive(false);
         Moverse(ZoneID.BAR, WaypointID.BAR, 2);
-        ComerYBeber();
     }
     
     private void RedesSocialesAction()
     {
         Debug.Log("Veamos Twitter");
+        //this.gameObject.SetActive(true);
+        inBar = false;
+        isEating = false;
         Moverse(ZoneID.HOUSE, WaypointID.HOUSE, 3);
-        ConsultarSM();
     }
 
     public void Repartir()
     {
-        isDelivering = true;
-        inFactory = false;
-        var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY1), 1.0f);
-        h.OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY2), 1.0f)
-        .OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY3), 1.0f)
-        .OnCompletedEvent += () => transform.GetChild(2).gameObject.SetActive(false);
-        /*isDelivering = false;*/
+        var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY1), 2.0f);
+        h.OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY2), 2.0f)
+        .OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY3), 2.0f)
+        .OnCompletedEvent += () =>
+        {
+            transform.GetChild(2).gameObject.SetActive(false);
+            isDelivering = false;
+        };
+        
     }
 
     public void ComerYBeber()
     {
         Debug.Log("Rico filete");
         //this.gameObject.SetActive(false);
-        isDelivering = false;
-        isEating = false;
+        isEating = true;
         inBar = true;
+        //Meter el wait
     }
 
     public void ConsultarSM()
     {
         //this.gameObject.SetActive(false);
+        inHouse = true;
+        //Meter el wait
     }
 
     public void Dormir()
     {
-        
+        //Meter el wait
+
     }
 
     public void Moverse(ID zone, ID point, int idPoint)
@@ -254,10 +268,10 @@ public class Repartidor : MonoBehaviour {
                                                 //isMoving = false;
                     break;
                 case 2:
-                    h.OnCompletedEvent += () => inBar = true;
+                    h.OnCompletedEvent += () => ComerYBeber();
                     break;
                 case 3:
-                    h.OnCompletedEvent += () => inHouse = true;
+                    h.OnCompletedEvent += () => ConsultarSM();
                     break;
                 default:
                     break;
