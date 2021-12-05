@@ -192,8 +192,9 @@ public class Repartidor : MonoBehaviour {
         Debug.Log("Rica comida");
         isDelivering = false;
         //isEating = false;
-        m_Actions.TryInteractWith2();
+        //m_Actions.TryInteractWith2();
         transform.GetChild(2).gameObject.SetActive(false);
+        m_Actions.CancelAll();
         Moverse(ZoneID.BAR, WaypointID.BAR, 2);
     }
     
@@ -208,10 +209,10 @@ public class Repartidor : MonoBehaviour {
 
     public void Repartir()
     {
-        var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY1), 2.0f);
-        h.OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY2), 2.0f)
-        .OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY3), 2.0f)
-        .OnCompletedEvent += () =>
+        m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY1), 2.0f);
+        m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY2), 2.0f);
+        var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY3), 2.0f);
+        h.OnCompletedEvent += () =>
         {
             transform.GetChild(2).gameObject.SetActive(false);
             isDelivering = false;

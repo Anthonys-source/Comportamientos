@@ -52,12 +52,9 @@ public class CharacterActions : MonoBehaviour
         return action;
     }
 
-    public TryInteractAction TryInteractWith2(ID interactableID)
+    public void CancelAll()
     {
-        var action = new TryInteractAction();
-        action.Initialize(_interactionsBehaviour, interactableID);
-        m_ActionsScheduler.SetAction(action);
-        return action;
+        m_ActionsScheduler.CancelAllActions();
     }
 
     public void LookAt(Vector3 dir)
@@ -101,6 +98,7 @@ public class ActionsScheduler
         if (m_CurrentAction != null)
         {
             m_CurrentAction.OnCompletedEvent -= RemoveCurrentAction;
+            m_CurrentAction.OnCanceledEvent -= RemoveCurrentAction;
             m_CurrentAction.OnFailedEvent -= RemoveCurrentAction;
         }
         m_Actions.Dequeue();
@@ -116,6 +114,7 @@ public class ActionsScheduler
             m_InProgress = true;
             m_CurrentAction = m_Actions.Peek();
             m_CurrentAction.OnCompletedEvent += RemoveCurrentAction;
+            m_CurrentAction.OnCanceledEvent += RemoveCurrentAction;
             m_CurrentAction.OnFailedEvent += RemoveCurrentAction;
             m_CurrentAction.Start();
         }
