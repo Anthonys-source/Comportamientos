@@ -380,7 +380,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1554543561429376379, guid: bbe3b68f9bfc70644a028f1d1265b236, type: 3}
   m_PrefabInstance: {fileID: 4449696946130945567}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5918225787574107110
+!u!1001 &5918225787574107110
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
