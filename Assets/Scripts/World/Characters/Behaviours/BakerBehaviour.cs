@@ -20,18 +20,21 @@ public class BakerBehaviour : MonoBehaviour
     private ReturnValues m_MakeBreadDoughState = ReturnValues.Running;
     private ReturnValues m_ArrivedAtBakery = ReturnValues.Running;
 
+    private ComponentRegistry reg;
+
     private void Awake()
     {
         m_Actions = GetComponent<CharacterActions>();
         m_Blackboard = GetComponent<CharacterBlackboard>();
         m_Waypoints = GetComponent<CharacterWaypoints>();
 
+        reg = ComponentRegistry.GetInst();
         // Init State Machine
     }
 
     private void Start()
     {
-        m_BakeryBT = new BehaviourTreeEngine(true);
+        m_BakeryBT = new BehaviourTreeEngine(false);
         var root = m_BakeryBT.CreateSelectorNode("root");
         m_BakeryBT.CreateLoopNode("b", root);
         var goToBakery = m_BakeryBT.CreateLeafNode("go to bakery", GoToBakery, ArrivedAtBakery);
@@ -63,19 +66,19 @@ public class BakerBehaviour : MonoBehaviour
 
 
 
-        m_SM = new StateMachineEngine(false);
+        //m_SM = new StateMachineEngine(false);
 
-        State house = m_SM.CreateEntryState("atHouse", () => Debug.Log("Idle"));
-        State bakery = m_SM.CreateSubStateMachine("atBakery", m_BakeryBT);
-        var itsBakeryHour = m_SM.CreatePerception<ValuePerception>(() => { return ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day >= 2; });
-        var itsHomeHour = m_SM.CreatePerception<ValuePerception>(() => { return ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day < 2; });
-        m_SM.CreateTransition("house to bakery", house, itsBakeryHour, bakery);
-        m_SM.CreateTransition("bakery to house", bakery, itsHomeHour, house);
+        //State house = m_SM.CreateEntryState("atHouse", () => Debug.Log("Idle"));
+        //State bakery = m_SM.CreateSubStateMachine("atBakery", m_BakeryBT);
+        //var itsBakeryHour = m_SM.CreatePerception<ValuePerception>(() => { return ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day >= 2; });
+        //var itsHomeHour = m_SM.CreatePerception<ValuePerception>(() => { return ComponentRegistry.GetInst().GetSingletonComponent<DayNightCycleComponent>().m_Day < 2; });
+        //m_SM.CreateTransition("house to bakery", house, itsBakeryHour, bakery);
+        //m_SM.CreateTransition("bakery to house", bakery, itsHomeHour, house);
     }
 
     private void Update()
     {
-        m_SM.Update();
+        //m_SM.Update();
         m_BakeryBT.Update();
     }
 
@@ -83,8 +86,8 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_GetFlourState = ReturnValues.Running;
 
-        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
-        if (a.HasItem(ItemID.FLOUR, out _))
+        var a = reg.GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (a.HasItem(ItemID.FLOUR, out _) || m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.FLOUR) == null)
         {
             m_GetFlourState = ReturnValues.Failed;
         }
@@ -102,8 +105,8 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_GetWaterState = ReturnValues.Running;
 
-        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
-        if (a.HasItem(ItemID.WATER, out _))
+        var a = reg.GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (a.HasItem(ItemID.WATER, out _) || m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.WATER) == null)
         {
             m_GetWaterState = ReturnValues.Failed;
         }
@@ -121,8 +124,8 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_GetYeastState = ReturnValues.Running;
 
-        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
-        if (a.HasItem(ItemID.YEAST, out _))
+        var a = reg.GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (a.HasItem(ItemID.YEAST, out _) || m_Blackboard.m_ItemsInVision.Find((i) => i.m_ID == ItemID.YEAST) == null)
         {
             m_GetYeastState = ReturnValues.Failed;
         }
@@ -140,7 +143,7 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_BakeBreadDoughState = ReturnValues.Running;
 
-        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        var a = reg.GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
         if (!a.HasItem(ItemID.BREAD_DOUGH, out _))
         {
             m_BakeBreadDoughState = ReturnValues.Failed;
@@ -149,7 +152,7 @@ public class BakerBehaviour : MonoBehaviour
         {
             m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.BREAD_OVEN).m_Pos, 1.0f);
             var h = m_Actions.TryInteractWith(WorkstationID.BREAD_OVEN);
-            h.OnCompletedEvent += () => m_BakeBreadDoughState = ReturnValues.Succeed;
+            h.OnCompletedEvent += () => { m_BakeBreadDoughState = ReturnValues.Succeed; m_Actions.GetHappy(); };
             h.OnFailedEvent += () => m_BakeBreadDoughState = ReturnValues.Failed;
         }
     }
@@ -158,7 +161,7 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_MakeBreadDoughState = ReturnValues.Running;
 
-        var a = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        var a = reg.GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
         if (!a.HasItem(ItemID.YEAST, out _) || !a.HasItem(ItemID.WATER, out _) || !a.HasItem(ItemID.FLOUR, out _))
         {
             m_MakeBreadDoughState = ReturnValues.Failed;
@@ -189,8 +192,9 @@ public class BakerBehaviour : MonoBehaviour
     {
         m_BreadSold = ReturnValues.Running;
 
-        var inv = ComponentRegistry.GetInst().GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
-        if (!inv.HasItem(ItemID.BREAD, out _))
+        var customerWaiting = reg.GetSingletonComponent<BakeryComponent>().m_IsCustomerWatingForBread;
+        var inv = reg.GetComponentFromEntity<InventoryComponent>(GetComponent<EntityID>().GetInstID());
+        if (!customerWaiting || !inv.HasItem(ItemID.BREAD, out _))
         {
             m_BreadSold = ReturnValues.Failed;
         }
@@ -198,7 +202,7 @@ public class BakerBehaviour : MonoBehaviour
         {
             m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.DIALOGUE_STARTER).m_Pos, 1.0f);
             var h = m_Actions.TryInteractWith(WorkstationID.DIALOGUE_STARTER);
-            h.OnCompletedEvent += () => m_BreadSold = ReturnValues.Succeed;
+            h.OnCompletedEvent += () => { m_BreadSold = ReturnValues.Succeed; m_Actions.GetHappy(); };
             h.OnFailedEvent += () => m_BreadSold = ReturnValues.Failed;
         }
     }

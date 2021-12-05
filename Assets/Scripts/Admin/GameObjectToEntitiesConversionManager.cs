@@ -23,7 +23,7 @@ public class GameObjectToEntitiesConversionManager : MonoBehaviour
             var moodCont = reg.GetComponentsContainer<MoodComponent>();
             var charCont = reg.GetComponentsContainer<CharacterComponent>();
             var invCont = reg.GetComponentsContainer<InventoryComponent>();
-            var bakers = reg.GetSingletonComponent<BakersComponent>();
+            var bakers = reg.GetSingletonComponent<BakeryComponent>();
 
             ID instanceID = c.GetComponent<EntityID>().GetInstID();
 

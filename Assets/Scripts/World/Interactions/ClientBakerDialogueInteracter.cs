@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ClientBakerDialogueInteracter : MonoBehaviour
 {
+    public bool IsCustomerWaiting => m_ClientID.IsInitialized();
+
     [SerializeField] private float m_InteractionDuration = 1.5f;
     [SerializeField] private WorkstationProgressMeter m_Meter;
 
