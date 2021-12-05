@@ -152,7 +152,7 @@ public class BakerBehaviour : MonoBehaviour
         {
             m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.BREAD_OVEN).m_Pos, 1.0f);
             var h = m_Actions.TryInteractWith(WorkstationID.BREAD_OVEN);
-            h.OnCompletedEvent += () => { m_BakeBreadDoughState = ReturnValues.Succeed; m_Actions.GetHappy(); };
+            h.OnCompletedEvent += () => { m_BakeBreadDoughState = ReturnValues.Succeed; /*m_Actions.GetHappy();*/ };
             h.OnFailedEvent += () => m_BakeBreadDoughState = ReturnValues.Failed;
         }
     }
@@ -202,7 +202,7 @@ public class BakerBehaviour : MonoBehaviour
         {
             m_Actions.MoveTo(m_Blackboard.m_WorkstationsInVision.Find((i) => i.m_ID == WorkstationID.DIALOGUE_STARTER).m_Pos, 1.0f);
             var h = m_Actions.TryInteractWith(WorkstationID.DIALOGUE_STARTER);
-            h.OnCompletedEvent += () => { m_BreadSold = ReturnValues.Succeed; m_Actions.GetHappy(); };
+            h.OnCompletedEvent += () => { m_BreadSold = ReturnValues.Succeed; /*m_Actions.GetHappy();*/ };
             h.OnFailedEvent += () => m_BreadSold = ReturnValues.Failed;
         }
     }

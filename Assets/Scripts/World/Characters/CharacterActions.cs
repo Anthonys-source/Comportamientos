@@ -53,6 +53,11 @@ public class CharacterActions : MonoBehaviour
         return action;
     }
 
+    public void CancelAll()
+    {
+        m_ActionsScheduler.CancelAllActions();
+    }
+
     public void LookAt(Vector3 dir)
     {
         gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, dir);
@@ -94,6 +99,7 @@ public class ActionsScheduler
         if (m_CurrentAction != null)
         {
             m_CurrentAction.OnCompletedEvent -= RemoveCurrentAction;
+            m_CurrentAction.OnCanceledEvent -= RemoveCurrentAction;
             m_CurrentAction.OnFailedEvent -= RemoveCurrentAction;
         }
         m_Actions.Dequeue();
@@ -109,6 +115,7 @@ public class ActionsScheduler
             m_InProgress = true;
             m_CurrentAction = m_Actions.Peek();
             m_CurrentAction.OnCompletedEvent += RemoveCurrentAction;
+            m_CurrentAction.OnCanceledEvent += RemoveCurrentAction;
             m_CurrentAction.OnFailedEvent += RemoveCurrentAction;
             m_CurrentAction.Start();
         }
