@@ -86,7 +86,7 @@ public class CharacterBlackboard : MonoBehaviour
     }
 }
 
-public struct ItemBlackboard
+public class ItemBlackboard
 {
     public ID m_ID;
     public Vector3 m_Pos;
