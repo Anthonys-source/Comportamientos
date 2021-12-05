@@ -12,6 +12,14 @@ GameObject:
   - component: {fileID: 7104622378014423531}
   - component: {fileID: 927107029743786630}
   - component: {fileID: 6888737232631940218}
+  - component: {fileID: 5757853500831842884}
+  - component: {fileID: 2888039997060892826}
+  - component: {fileID: 7386649849329424400}
+  - component: {fileID: 6228168590765772698}
+  - component: {fileID: 3931911099720192778}
+  - component: {fileID: 198656973222731947}
+  - component: {fileID: 4655376953450829622}
+  - component: {fileID: 692596162182757418}
   m_Layer: 0
   m_Name: Kid
   m_TagString: Untagged
@@ -96,3 +104,147 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &5757853500831842884
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2888039997060892826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1498e383ce7bdcb4f8d0904083071d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerCallbacksRef: {fileID: 0}
+--- !u!114 &7386649849329424400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e0675cd75bc714ca6a00256cc6484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InstanceID: kid_1
+  TypeID: kid
+--- !u!114 &6228168590765772698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd237424fa0d4114eb2e5e2098973b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CharComponent:
+    m_ID:
+      m_NameID: 
+      m_ID: 0
+      m_Initialized: 0
+    m_WalkingSpeed: 0
+    m_Position: {x: 0, y: 0, z: 0}
+  m_MoodComponent:
+    m_ID:
+      m_NameID: 
+      m_ID: 0
+      m_Initialized: 0
+    m_MoodValue: 0
+  m_InventoryComponent:
+    m_ID:
+      m_NameID: 
+      m_ID: 0
+      m_Initialized: 0
+    m_ItemsList: []
+--- !u!114 &3931911099720192778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dc6db30cc93874e89272fdf67e7b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ActionsScheduler:
+    m_InProgress: 0
+--- !u!114 &198656973222731947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58b7f106c0f7d845b2524c6e9e934cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemsInRange: []
+  m_WorkstationsInRange: []
+  m_CharactersInRange: []
+  m_CurrentZoneID:
+    m_NameID: 
+    m_ID: 0
+    m_Initialized: 0
+--- !u!114 &4655376953450829622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c974e6ae78d5b874f97f489ae17acccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Waypoints:
+  - m_IDName: school
+    m_Transform: {fileID: 0}
+  - m_IDName: cafe
+    m_Transform: {fileID: 0}
+  - m_IDName: house
+    m_Transform: {fileID: 0}
+--- !u!114 &692596162182757418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931002487610786009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456ac2b997e127a4d9e3322938a8fd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

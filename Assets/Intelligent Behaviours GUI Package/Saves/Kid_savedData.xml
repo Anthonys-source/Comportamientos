@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<XMLElement xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>4fcf06ec-fcff-4e0e-9541-906772706cf4</Id>
+  <elemType>FSM</elemType>
+  <secondType />
+  <thirdType />
+  <fourthType />
+  <name>Kid</name>
+  <windowPosX>478</windowPosX>
+  <windowPosY>314</windowPosY>
+  <nodes>
+    <XMLElement>
+      <Id>e5bde17d-373e-4987-a8f1-0cdfb1fa3c32</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Entry</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Durmiendo</name>
+      <windowPosX>35</windowPosX>
+      <windowPosY>322</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>bd24e187-e033-4f70-bd27-7043fb4307d3</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Estudiando</name>
+      <windowPosX>626</windowPosX>
+      <windowPosY>51</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>c4d7db68-178c-4a1c-b057-026e01098e08</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Comiendo</name>
+      <windowPosX>1174</windowPosX>
+      <windowPosY>382</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>b985620b-1d10-4c7a-b311-3a2bbd0d16b2</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Haciendo deberes</name>
+      <windowPosX>570</windowPosX>
+      <windowPosY>501</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </nodes>
+  <transitions>
+    <XMLElement>
+      <Id>37a7e024-a3b5-45f3-b8f4-4383c808bb5e</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>Ir a clase</name>
+      <windowPosX>325.5</windowPosX>
+      <windowPosY>203</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>e5bde17d-373e-4987-a8f1-0cdfb1fa3c32</fromId>
+      <toId>bd24e187-e033-4f70-bd27-7043fb4307d3</toId>
+      <perception>
+        <Id>ce8c638e-eb4d-470f-bebe-15ba5a77e6ab</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>false</openFoldout>
+        <firstChild>
+          <Id>0e91e43a-7149-4285-8e3a-8f7d4c46fbf0</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>48ed2394-8f06-4146-bd5f-042a69c339a9</Id>
+          <type>And</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+          <firstChild>
+            <Id>af3a691d-b6d2-45d3-81ec-329ce1f2d3d6</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </firstChild>
+          <secondChild>
+            <Id>a6867ecf-ac67-4078-b8c7-3a4f09b2e6e3</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </secondChild>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>86c44c12-ff3d-4c5d-bf41-a3677c5dd9c1</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A comer</name>
+      <windowPosX>895</windowPosX>
+      <windowPosY>233</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>bd24e187-e033-4f70-bd27-7043fb4307d3</fromId>
+      <toId>c4d7db68-178c-4a1c-b057-026e01098e08</toId>
+      <perception>
+        <Id>b4c12dbc-a3fb-460e-9069-cbeeb30ba148</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>false</openFoldout>
+        <firstChild>
+          <Id>7bd1566f-0313-4086-9398-e212e7d13e0f</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>8feebe06-cff4-4f9a-94e0-6a6f7b3c21b5</Id>
+          <type>And</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+          <firstChild>
+            <Id>0ea01e5d-328c-48ec-9bcf-a370be2eb0bc</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </firstChild>
+          <secondChild>
+            <Id>cee42a32-35ba-41ab-a4b3-4bfa290fb32d</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </secondChild>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>bcb74107-8424-475d-a1b9-638c9b71cfdf</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A dormir</name>
+      <windowPosX>297.5</windowPosX>
+      <windowPosY>428</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>b985620b-1d10-4c7a-b311-3a2bbd0d16b2</fromId>
+      <toId>e5bde17d-373e-4987-a8f1-0cdfb1fa3c32</toId>
+      <perception>
+        <Id>4d7160ca-65c3-46a7-b05f-11585b0dc344</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>false</openFoldout>
+        <firstChild>
+          <Id>dfa30159-136f-4c6a-96bd-7048a383ee7d</Id>
+          <type>Value</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>cc81e941-8eea-45a7-b487-de3fde4938d1</Id>
+          <type>Value</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>b27beddf-218c-4428-a97d-e13e5f96b1d3</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>A casa</name>
+      <windowPosX>867</windowPosX>
+      <windowPosY>458</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>c4d7db68-178c-4a1c-b057-026e01098e08</fromId>
+      <toId>b985620b-1d10-4c7a-b311-3a2bbd0d16b2</toId>
+      <perception>
+        <Id>e506be73-e0fb-4559-87cd-0836049f5d17</Id>
+        <type>And</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>false</openFoldout>
+        <firstChild>
+          <Id>58ef8087-6c60-4874-8466-a4da4e39c102</Id>
+          <type>Push</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>false</openFoldout>
+        </firstChild>
+        <secondChild>
+          <Id>668f08f5-7dd7-4692-8640-bff1800d440e</Id>
+          <type>And</type>
+          <timerNumber>0</timerNumber>
+          <elemName />
+          <customName>CustomName</customName>
+          <stateName>Select a State</stateName>
+          <status>Succeed</status>
+          <openFoldout>true</openFoldout>
+          <firstChild>
+            <Id>5d6fe6f4-153f-4130-ae6f-0bce3d208124</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </firstChild>
+          <secondChild>
+            <Id>610bd2ed-7210-46c0-8ad4-5b756b61e5d3</Id>
+            <type>And</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+            <firstChild>
+              <Id>d5bcdd38-8ef1-48e6-b603-a9934c3a9283</Id>
+              <type>Value</type>
+              <timerNumber>0</timerNumber>
+              <elemName />
+              <customName>CustomName</customName>
+              <stateName>Select a State</stateName>
+              <status>Succeed</status>
+              <openFoldout>false</openFoldout>
+            </firstChild>
+            <secondChild>
+              <Id>0c5b7d8d-dbec-4807-b6c3-5e0b47dbaaa8</Id>
+              <type>Value</type>
+              <timerNumber>0</timerNumber>
+              <elemName />
+              <customName>CustomName</customName>
+              <stateName>Select a State</stateName>
+              <status>Succeed</status>
+              <openFoldout>false</openFoldout>
+            </secondChild>
+          </secondChild>
+        </secondChild>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </transitions>
+  <isRandom>false</isRandom>
+  <isInfinite>false</isInfinite>
+  <delayTime>0</delayTime>
+  <Nloops>0</Nloops>
+  <index>0</index>
+  <variableMin>0</variableMin>
+  <variableMax>0</variableMax>
+  <slope>0</slope>
+  <exp>0</exp>
+  <displX>0</displX>
+  <displY>0</displY>
+  <weight>0</weight>
+  <isExit>false</isExit>
+</XMLElement>
