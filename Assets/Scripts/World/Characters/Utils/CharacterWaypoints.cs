@@ -40,5 +40,10 @@ public class CharacterWaypoints : MonoBehaviour
 public static class WaypointID
 {
     public static readonly ID BAKERY = new ID("bakery");
+    public static readonly ID BAKERY1 = new ID("bakery_1");
+    public static readonly ID BAKERY2 = new ID("bakery_2");
+    public static readonly ID BAKERY3 = new ID("bakery_3");
     public static readonly ID FACTORY = new ID("factory");
+    public static readonly ID BAR = new ID("bar");
+    public static readonly ID HOUSE = new ID("house");
 }

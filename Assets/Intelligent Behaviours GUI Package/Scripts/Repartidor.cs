@@ -36,14 +36,14 @@ public class Repartidor : MonoBehaviour {
     private State RedesSociales;
     
     //Place your variables here
-    private bool isMoving;
+    [SerializeField] private bool isMoving;
     private bool isSleeping;
-    private bool inFactory;
-    private bool inBar;
-    private bool inHouse;
-    private bool inSM;
-    private bool isEating;
-    private bool isDelivering;
+    [SerializeField] private bool inFactory;
+    [SerializeField] private bool inBar;
+    [SerializeField] private bool inHouse;
+    [SerializeField] private bool inSM;
+    [SerializeField] private bool isEating;
+    [SerializeField] private bool isDelivering;
 
     private CharacterActions m_Actions;
     private CharacterBlackboard m_Blackboard;
@@ -55,8 +55,8 @@ public class Repartidor : MonoBehaviour {
     {
         Repartidor_FSM = new StateMachineEngine(false);
         isMoving = false;
-        isSleeping = true;
-        inHouse = true;
+        isSleeping = false;
+        inHouse = false;
         inFactory = false;
         inSM = false;
         isEating = false;
@@ -120,11 +120,27 @@ public class Repartidor : MonoBehaviour {
     {
         Repartidor_FSM.Update();
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             Repartidor_FSM.Fire("A la fabrica");
         }
-        /*if (!MoviendoPerception.Check(this.gameObject))
+        if (Input.GetMouseButtonDown(1))
+        {
+            Repartidor_FSM.Fire("A trabajar");
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Repartidor_FSM.Fire("A comer");
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Repartidor_FSM.Fire("A casa");
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Repartidor_FSM.Fire("A dormir");
+        }*/
+        if (!MoviendoPerception.Check(this.gameObject))
         {
             Repartidor_FSM.Fire("A la fabrica");
         }else if(!EstaRepartiendoPerception.Check(this.gameObject) && EstaEnFabricaPerception.Check(this.gameObject))
@@ -139,7 +155,7 @@ public class Repartidor : MonoBehaviour {
         }else if (!DurmiendoPerception.Check(this.gameObject))
         {
             Repartidor_FSM.Fire("A dormir");
-        }*/
+        }
     }
 
     // Create your desired actions
@@ -147,67 +163,132 @@ public class Repartidor : MonoBehaviour {
     private void DurmiendoAction()
     {
         Debug.Log("Durmiendo");
+        Dormir();
     }
     
     private void CaminoalafabricaAction()
     {
         //m_ArrivedAtBakery = ReturnValues.Running;
-        Debug.Log("A trabajar");
-        if (m_Blackboard.m_CurrentZoneID == ZoneID.FACTORY)
-            inFactory = false;
-        else
-        {
-            var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.FACTORY), 1.0f);
-            h.OnCompletedEvent += () => inFactory = true;
-        }
+        Debug.Log("De camino al trabajo");
+        isMoving = true;
+        Moverse(ZoneID.FACTORY, WaypointID.FACTORY, 1);
     }
     
     private void RepartiendoAction()
     {
         Debug.Log("A repartir");
+        isDelivering = true;
         transform.GetChild(2).gameObject.SetActive(true);
+        Repartir();
     }
     
     private void ComiendoybebiendoAction()
     {
         Debug.Log("Rica comida");
+        transform.GetChild(2).gameObject.SetActive(false);
+        Moverse(ZoneID.BAR, WaypointID.BAR, 2);
+        ComerYBeber();
     }
     
     private void RedesSocialesAction()
     {
         Debug.Log("Veamos Twitter");
+        Moverse(ZoneID.HOUSE, WaypointID.HOUSE, 3);
+        ConsultarSM();
+    }
+
+    public void Repartir()
+    {
+        isDelivering = true;
+        inFactory = false;
+        var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY1), 1.0f);
+        h.OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY2), 1.0f)
+        .OnCompletedEvent += () => m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(WaypointID.BAKERY3), 1.0f)
+        .OnCompletedEvent += () => transform.GetChild(2).gameObject.SetActive(false);
+        /*isDelivering = false;*/
+    }
+
+    public void ComerYBeber()
+    {
+        Debug.Log("Rico filete");
+        //this.gameObject.SetActive(false);
+        isDelivering = false;
+        isEating = false;
+        inBar = true;
+    }
+
+    public void ConsultarSM()
+    {
+        //this.gameObject.SetActive(false);
+    }
+
+    public void Dormir()
+    {
+        
+    }
+
+    public void Moverse(ID zone, ID point, int idPoint)
+    {
+        if (m_Blackboard.m_CurrentZoneID == zone)
+            switch (idPoint)
+            {
+                case 1:
+                    inFactory = false;
+                    break;
+                case 2:
+                    inBar = false;
+                    break;
+                case 3:
+                    inHouse = false;
+                    break;
+                default:
+                    break;
+            }
+        else
+        {
+            var h = m_Actions.MoveTo(m_Waypoints.GetWaypointPosition(point), 1.0f);
+            switch (idPoint)
+            {
+                case 1:
+                    h.OnCompletedEvent += () => inFactory = true;
+                                                //isMoving = false;
+                    break;
+                case 2:
+                    h.OnCompletedEvent += () => inBar = true;
+                    break;
+                case 3:
+                    h.OnCompletedEvent += () => inHouse = true;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     
     public bool getInFactory()
     {
         return inFactory;
     }
-
     public bool getInHouse()
     {
         return inHouse;
     }
-
     public bool getSleeping()
     {
         return isSleeping;
     }
-
     public bool getMoving()
     {
         return isMoving;
     }
-
     public bool getInBar()
     {
         return inBar;
     }
-
     public bool getSM()
     {
         return inSM;
     }
-
     public bool getEating()
     {
         return isEating;
